@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
 
 #define MAX_REGISTRO 100
 
@@ -14,7 +15,7 @@ int totalregistros = 0;
 
 void registrarConteudo(void);
 void verRegistros(void);
-
+void buscarPorMateria(void);
 int main() {
 
     int opcao;
@@ -24,6 +25,7 @@ int main() {
         printf("\n=== CADERNO DE ESTUDOS ===\n");
         printf("1 - Criar nota\n");
         printf("2 - Ver notas\n");
+        printf("3 - Buscar por Matéria\n");
         printf("0 - Sair\n");
         printf("Escolha: ");
 
@@ -35,6 +37,9 @@ int main() {
         }
         else if (opcao == 2) {
             verRegistros();
+        }
+        else if (opcao == 3) {
+            buscarPorMateria();
         }
         else if (opcao == 0) {
             printf("Saindo...\n");
@@ -103,4 +108,30 @@ void verRegistros(void) {
     }
 
     printf("\n");
+}
+void buscarPorMateria(void) {
+
+    if (totalregistros == 0) {
+        printf("Nenhuma nota em memória.\n");
+        return;
+    }
+    char buscar[200];
+    getchar(); // Limpar o buffer do teclado
+    printf("Digite a matéria a ser buscada: ");
+    fgets(buscar, 200, stdin);
+
+    printf("\n=== RESULTADOS DA BUSCA ===\n");
+    int encontrados = 0;
+    for (int i = 0; i < totalregistros; i++) {
+        if (strstr(registros[i].materia, buscar) != NULL) {
+            printf("\n[%d]\n", i + 1);
+            printf("Matéria: %s", registros[i].materia);
+            printf("Título: %s", registros[i].titulo);
+            printf("Conteúdo: %s", registros[i].conteudo);
+            encontrados++;
+        }
+    }
+    if (encontrados == 0) {
+        printf("Nenhuma nota encontrada para a matéria buscada.\n");
+    }
 }
