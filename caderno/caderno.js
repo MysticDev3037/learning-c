@@ -1,82 +1,53 @@
 let registros = [];
-let rl = null;
 
-if (typeof require === 'function') {
-    const readline = require('readline/promises');
-    const { stdin: input, stdout: output } = require('process');
-    rl = readline.createInterface({ input, output });
-}
-
-async function pedirTexto(mensagem) {
-    if (typeof prompt === 'function') {
-        return prompt(mensagem);
-    }
-
-    if (rl) {
-        return rl.question(`${mensagem} `);
-    }
-
-    throw new Error('Nenhuma entrada disponível para o caderno.');
-}
-
-async function criarRegistro() {
-    let materia = await pedirTexto('Digite a matéria:');
-    let assunto = await pedirTexto('Digite o título:');
-    let conteudo = await pedirTexto('Digite o conteúdo da nota:');
-    let data = new Date().toLocaleString();
+function criarRegistro() {
+    let materia = prompt("Digite a matéria:");
+    let titulo = prompt("Digite o título:");
+    let conteudo = prompt("Digite o conteúdo:");
 
     let registro = {
         materia: materia,
-        assunto: assunto,
-        conteudo: conteudo,
-        data: data
+        titulo: titulo,
+        conteudo: conteudo
     };
 
     registros.push(registro);
-    console.log('Registro criado com sucesso!');
+
+    console.log("Registro criado!");
 }
 
 function verRegistros() {
     if (registros.length === 0) {
-        console.log('Nenhum registro encontrado.');
+        console.log("Nenhum registro.");
         return;
     }
 
-    console.log('=== REGISTROS ===');
     for (let i = 0; i < registros.length; i++) {
-        console.log(`\n[${i + 1}]`);
-        console.log(`Matéria: ${registros[i].materia}`);
-        console.log(`Assunto: ${registros[i].assunto}`);
-        console.log(`Conteúdo: ${registros[i].conteudo}`);
-        console.log(`Data: ${registros[i].data}`);
+        console.log("\n---");
+        console.log("Matéria:", registros[i].materia);
+        console.log("Título:", registros[i].titulo);
+        console.log("Conteúdo:", registros[i].conteudo);
     }
 }
 
-async function main() {
-    while (true) {
-        console.log('\n=== CADERNO DE ESTUDOS ===');
-        console.log('1 - Criar nota');
-        console.log('2 - Ver notas');
-        console.log('3 - Buscar por Matéria');
-        console.log('0 - Sair');
+while (true) {
+    let opcao = prompt(
+        "1 - Criar nota\n2 - Ver notas\n0 - Sair"
+    );
 
-        let opcao = await pedirTexto('Escolha: ');
+    if (opcao === "1") {
+        criarRegistro();
+    }
 
-        if (opcao === '1') {
-            await criarRegistro();
-        } else if (opcao === '2') {
-            verRegistros();
-        } else if (opcao === '0') {
-            console.log('Saindo...');
-            break;
-        } else {
-            console.log('Opção inválida!');
-        }
+    else if (opcao === "2") {
+        verRegistros();
+    }
+
+    else if (opcao === "0") {
+        break;
+    }
+
+    else {
+        console.log("Opção inválida");
     }
 }
-
-main().finally(() => {
-    if (rl) {
-        rl.close();
-    }
-});
