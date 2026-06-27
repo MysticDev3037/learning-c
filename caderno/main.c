@@ -1,60 +1,67 @@
 #include <stdio.h>
+#include <time.h>
+    
+void registrarConteudo(void);
+void verRegistros(void);
 
 int main() {
     int opcao;
-    char nota[200];
-
-
-    printf("Caderno de Estudos - Vini\n");
-    printf("1 - Criar nota\n");
-    printf("2 - Ver notas\n");
-    printf("3 - Sair\n");
-
-
-    scanf("%d", &opcao);
-
-
-    switch (opcao) {
-        case 1: {
-            printf("Opção 1 selecionada: Criar nota\n");
-
-            getchar();
-            fgets(nota, 200, stdin);
-
-            FILE *arquivo = fopen("notas.txt", "a");
-            if (arquivo == NULL) {
-                printf("Erro ao abrir o arquivo.\n");
-                return 1;
-            }
-            fprintf(arquivo, "%s\n", nota);
-            fclose(arquivo);
+    while (1) {
+        printf("\n=== CADERNO DE ESTUDOS ===\n");
+        printf("1 - Criar nota\n");
+        printf("2 - Ver notas\n");
+        printf("0 - Sair\n");
+        printf("Escolha: ");
+        scanf("%d", &opcao);
+        while(getchar() != '\n');
+        if (opcao == 1) {
+            registrarConteudo();
+        }
+        else if (opcao == 2) {
+            verRegistros();
+        }
+        else if (opcao == 0) {
+            printf("Saindo...\n");
             break;
         }
-        case 2: {
-            printf("Opção 2 selecionada: Ver notas\n");
-            FILE *arquivo = fopen("notas.txt", "r");
-            if (arquivo == NULL) {
-                printf("Nenhum arquivo de notas encontrado.\n");
-                return 1;
-            }
-            char linha[200];
-            printf("Notas salvas:\n");
-            while (fgets(linha, sizeof(linha), arquivo) != NULL) {
-                printf("%s", linha);
-            }
-            fclose(arquivo);
-
-            
-            break;
+        else {
+            printf("Opcao invalida!\n");
         }
-        case 3: {
-            printf("Saindo do programa...\n");
-            break;
-        }
-        default:
-            printf("Opção inválida. Por favor, selecione uma opção válida.\n");
-            break;
     }
 
     return 0;
+}
+void registrarConteudo() {
+    FILE *arquivo = fopen("notas.txt", "a");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir arquivo!\n");
+        return;
+    }
+    char materia[200];
+    char titulo[70];
+    char conteudo[200];
+    printf("Digite a matéria: ");
+    getchar();
+    fgets(materia, 200, stdin);
+    printf("Digite o título: ");
+    fgets(titulo, 70, stdin);
+    printf("Digite o conteúdo: ");
+    fgets(conteudo, 200, stdin);
+    fprintf(arquivo, "Matéria: %s\nTítulo: %s\nConteúdo: %s\n", materia, titulo, conteudo);
+    fclose(arquivo);
+    printf("Nota salva!\n");
+}
+void verRegistros() {
+    FILE *arquivo = fopen("notas.txt", "r");
+    if (arquivo == NULL) {
+        printf("Nenhuma nota encontrada.\n");
+        return;
+    }
+    char linha[200];
+    printf("\n=== SUAS NOTAS ===\n");
+    while (fgets(linha, 200, arquivo) != NULL) {
+        printf("%s", linha);
+    }
+    fclose(arquivo);
 }
