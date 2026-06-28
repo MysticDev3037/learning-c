@@ -1,5 +1,6 @@
 let registros = [];
 let contador = 0;
+let idEditando = null;
 carregarRegistros(); // Carrega os registros salvos ao iniciar o programa
 verRegistros(); // Exibe os registros carregados
 
@@ -22,6 +23,7 @@ function criarRegistro() {
     limparCampos(); // Limpa os campos do formulário
 }
 
+
 function limparCampos() {
     document.getElementById("materia").value = "";
     document.getElementById("titulo").value = "";
@@ -42,11 +44,39 @@ function verRegistros() {
         listaRegistro.innerHTML += "<p>Título: " + registros[i].titulo + "</p>";
         listaRegistro.innerHTML += "<p>Conteúdo: " + registros[i].conteudo + "</p>";
         listaRegistro.innerHTML += "<button onclick='deletarRegistro(" + registros[i].id + ")'>Excluir</button>";
-        listaRegistro.innerHTML += "<button onclick='editRegistro(" + registros[i].id + ", prompt(\"Nova matéria:\", \"" + registros[i].materia + "\"), prompt(\"Novo título:\", \"" + registros[i].titulo + "\"), prompt(\"Novo conteúdo:\", \"" + registros[i].conteudo + "\"))'>Editar</button>";
+        listaRegistro.innerHTML += "<button onclick='abrirModal("+ registros[i].id + ")'>Editar</button>"
         listaRegistro.innerHTML += "<hr>";
     }
 }
-function editRegistro(id){}
+function abrirModal(id){
+    document.getElementById("modalEditar").style.display = "block";
+    idEditando = id;
+    let registro = registros.find(r => r.id === id);
+        document.getElementById("editarmateria").value = registro.materia
+        document.getElementById("editartitulo").value = registro.titulo
+        document.getElementById("editarconteudo").value = registro.conteudo
+}
+function alterarRegistro() {
+    let registro = registros.find(r => r.id === idEditando);
+    registro.materia = document.getElementById("editarmateria").value;
+    registro.titulo = document.getElementById("editartitulo").value;
+    registro.conteudo = document.getElementById("editarconteudo").value;
+
+    salvarRegistros(); // Salva os registros após editar
+    verRegistros(); // Atualiza a lista de registros exibida
+    cancelarEdicao(); // Fecha o modal de edição
+}
+
+
+
+
+function cancelarEdicao(){
+    document.getElementById("modalEditar").style.display = "none";
+    idEditando = null;
+    document.getElementById("editarmateria").value = "";
+    document.getElementById("editartitulo").value = "";
+    document.getElementById("editarconteudo").value = "";
+}
 
 function buscarMateria() {
     let busca = document.getElementById("busca").value;
@@ -80,27 +110,7 @@ function deletarRegistro(id) {
     verRegistros(); // Atualiza a lista de registros exibida
 }
 
-function editRegistro(id, novaMateria, novoTitulo, novoConteudo) {
-    let registro = registros.find(r => r.id === id); // Procura o registro com o ID informado
-
-    if (registro) { // Se o registro foi encontrado
-        if (novaMateria) registro.materia = novaMateria;
-        if (novoTitulo) registro.titulo = novoTitulo;
-        if (novoConteudo) registro.conteudo = novoConteudo;
-
-        salvarRegistros(); // Salva os registros após editar
-        verRegistros();
-    }
-}
 
 function salvarRegistros() {
     localStorage.setItem("registros", JSON.stringify(registros));
-}
-
-function carregarRegistros() {
-    let registrosSalvos = localStorage.getItem("registros");
-    if (registrosSalvos) {
-        registros = JSON.parse(registrosSalvos);
-        contador = registros.length; // Atualiza o contador para evitar IDs duplicados
-    }
 }
