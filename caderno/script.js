@@ -1,11 +1,13 @@
 let registros = [];
 let contador = 0;
 loadRegistros(); // Carrega os registros salvos ao iniciar o programa
+verRegistros(); // Exibe os registros carregados
+
 function criarRegistro() {
     let id_registro = contador++;
-    let materia = prompt("Digite a matéria:");
-    let titulo = prompt("Digite o título:");
-    let conteudo = prompt("Digite o conteúdo:");
+    let materia = document.getElementById("materia").value;
+    let titulo = document.getElementById("titulo").value;
+    let conteudo = document.getElementById("conteudo").value;
 
     let registro = {
         id: id_registro,
@@ -16,28 +18,32 @@ function criarRegistro() {
 
     registros.push(registro);
     saveRegistros(); // Salva os registros após criar um novo
-
-    console.log("Registro criado!");
-    contador++;
+    verRegistros(); // Atualiza a lista de registros exibida
 }
 
 function verRegistros() {
     if (registros.length === 0) { //Caso não tenha itens registrados
-        console.log("Nenhum registro.");
         return;
     }
-
+    let listaRegistro = document.getElementById("listaRegistro");
+    listaRegistro.innerHTML =""; // Limpa a lista antes de adicionar os registros
     for (let i = 0; i < registros.length; i++) { // Percorre todos os registros
-        console.log("\n---"); // Vai apresentando os dados em loop
-        console.log("ID:", registros[i].id);
-        console.log("Matéria:", registros[i].materia);
-        console.log("Título:", registros[i].titulo);
-        console.log("Conteúdo:", registros[i].conteudo);
+        listaRegistro.innerHTML +=
+        "<h3>ID:" + registros[i].id + "</h3>";
+        listaRegistro.innerHTML +=
+        "<p>Matéria: " + registros[i].materia + "</p>";
+        listaRegistro.innerHTML +=
+        "<p>Título: " + registros[i].titulo + "</p>";
+        listaRegistro.innerHTML +=
+        "<p>Conteúdo: " + registros[i].conteudo + "</p>";
+        listaRegistro.innerHTML +=
+        "<hr>";
     }
+
 }
 
 function buscarMateria() {
-    let busca = prompt("Digite a matéria que deseja buscar:");
+    let busca = document.getElementById("busca").value;
     let encontrado = [];
      
     for (let i = 0; i < registros.length; i++) { // Percorre todos os registros
@@ -47,7 +53,6 @@ function buscarMateria() {
     }
 
     if (encontrado.length === 0) { //Caso não ache nada
-        console.log("Nenhum registro encontrado para a matéria:", busca);
         return;
     }
 
@@ -58,72 +63,32 @@ function buscarMateria() {
         texto += "Título: " + encontrado[i].titulo + "\n";
         texto += "Conteúdo: " + encontrado[i].conteudo + "\n";
     }
-    alert(texto); // Mostra o texto
 }   
 function deletarRegistro() {
-    let id = Number(prompt("Digite o ID do registro que deseja deletar:"));
     let tamantes = registros.length; // Guarda o tamanho da lista antes de deletar
     registros = registros.filter(r =>r.id !== id); // Filtra a lista, removendo o registro com o ID informado
     if (registros.length < tamantes) { // Se o tamanho da lista diminuiu, significa que o registro foi deletado
         saveRegistros(); // Salva os registros após deletar
-        console.log("Registro deletado com sucesso!");
     } else {
-        console.log("Registro não encontrado.");
     }
+    verRegistros(); // Atualiza a lista de registros exibida
 }
 
 function editRegistro() {
-    let id = Number(prompt("Digite o ID do registro que deseja editar:"));
     let registro = registros.find(r => r.id === id); // Procura o registro com o ID informado
 
     if (registro) { // Se o registro foi encontrado
-        let novaMateria = prompt("Digite a nova matéria (deixe em branco para não alterar):");
-        let novoTitulo = prompt("Digite o novo título (deixe em branco para não alterar):");
-        let novoConteudo = prompt("Digite o novo conteúdo (deixe em branco para não alterar):");
         
         if (novaMateria) registro.materia = novaMateria;
         if (novoTitulo) registro.titulo = novoTitulo;
         if (novoConteudo) registro.conteudo = novoConteudo;
 
         saveRegistros(); // Salva os registros após editar
-        console.log("Registro editado com sucesso!");
     } else {
-        console.log("Registro não encontrado.");
-    }
-}
-
-while (true) { // Loop do menu inicial
-    let opcao = prompt(
-        "1 - Criar nota\n2 - Ver notas\n3 - Buscar matéria\n4 - Editar registro\n5 - Deletar registro\n0 - Sair"
-    );
-
-    if (opcao === "1") {
-        criarRegistro();
-    }
-
-    else if (opcao === "2") {
-        verRegistros();
-    }
-    else if (opcao === "3") {
-        buscarMateria();
-    }
-    else if (opcao === "4") {
-        editRegistro();
-    }
-    else if (opcao === "5") {
-        deletarRegistro();
-    }
-    else if (opcao === "0") {
-        break;
-    }
-
-    else {
-        console.log("Opção inválida");
     }
 }
 function saveRegistros() {
     localStorage.setItem("registros", JSON.stringify(registros));
-    console.log("Registros salvos com sucesso!");
 }
 
 function loadRegistros() {
@@ -131,8 +96,6 @@ function loadRegistros() {
     if (registrosSalvos) {
         registros = JSON.parse(registrosSalvos);
         contador = registros.length; // Atualiza o contador para evitar IDs duplicados
-        console.log("Registros carregados com sucesso!");
     } else {
-        console.log("Nenhum registro salvo encontrado.");
     }
 }
