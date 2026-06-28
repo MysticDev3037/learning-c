@@ -82,10 +82,19 @@ function editRegistro() {
         let novoConteudo = prompt("Digite o novo conteúdo (deixe em branco para não alterar):");
         
         if (novaMateria) registro.materia = novaMateria;
+        if (novoTitulo) registro.titulo = novoTitulo;
+        if (novoConteudo) registro.conteudo = novoConteudo;
+
+        saveRegistros(); // Salva os registros após editar
+        console.log("Registro editado com sucesso!");
+    } else {
+        console.log("Registro não encontrado.");
+    }
+}
 
 while (true) { // Loop do menu inicial
     let opcao = prompt(
-        "1 - Criar nota\n2 - Ver notas\n0 - Sair"
+        "1 - Criar nota\n2 - Ver notas\n3 - Buscar matéria\n4 - Editar registro\n5 - Deletar registro\n0 - Sair"
     );
 
     if (opcao === "1") {
@@ -97,6 +106,12 @@ while (true) { // Loop do menu inicial
     }
     else if (opcao === "3") {
         buscarMateria();
+    }
+    else if (opcao === "4") {
+        editRegistro();
+    }
+    else if (opcao === "5") {
+        deletarRegistro();
     }
     else if (opcao === "0") {
         break;

@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Caderno de Estudos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>Caderno de Estudos</h1>
 
-<script src="caderno.js"></script>
+<div class="form">
+    <input id="materia" placeholder="Matéria">
+    <input id="titulo" placeholder="Título">
+    <input id="conteudo" placeholder="Conteúdo">
+    <button onclick="criarRegistro()">Adicionar</button>
+</div>
 
+<h2>Registros</h2>
+<div id="lista"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
