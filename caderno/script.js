@@ -1,6 +1,6 @@
 let registros = [];
 let contador = 0;
-loadRegistros(); // Carrega os registros salvos ao iniciar o programa
+carregarRegistros(); // Carrega os registros salvos ao iniciar o programa
 verRegistros(); // Exibe os registros carregados
 
 function criarRegistro() {
@@ -17,35 +17,41 @@ function criarRegistro() {
     };
 
     registros.push(registro);
-    saveRegistros(); // Salva os registros após criar um novo
+    salvarRegistros(); // Salva os registros após criar um novo
     verRegistros(); // Atualiza a lista de registros exibida
+    limparCampos(); // Limpa os campos do formulário
 }
 
+function limparCampos() {
+    document.getElementById("materia").value = "";
+    document.getElementById("titulo").value = "";
+    document.getElementById("conteudo").value = "";
+    document.getElementById("materia").focus(); // Coloca o foco de volta no campo de matéria
+}
 function verRegistros() {
-    if (registros.length === 0) { //Caso não tenha itens registrados
+    let listaRegistro = document.getElementById("listaRegistro");
+    listaRegistro.innerHTML = ""; // Limpa a lista antes de adicionar os registros
+
+    if (registros.length === 0) {
+        listaRegistro.innerHTML = "<p>Nenhum registro encontrado.</p>";
         return;
     }
-    let listaRegistro = document.getElementById("listaRegistro");
-    listaRegistro.innerHTML =""; // Limpa a lista antes de adicionar os registros
-    for (let i = 0; i < registros.length; i++) { // Percorre todos os registros
-        listaRegistro.innerHTML +=
-        "<h3>ID:" + registros[i].id + "</h3>";
-        listaRegistro.innerHTML +=
-        "<p>Matéria: " + registros[i].materia + "</p>";
-        listaRegistro.innerHTML +=
-        "<p>Título: " + registros[i].titulo + "</p>";
-        listaRegistro.innerHTML +=
-        "<p>Conteúdo: " + registros[i].conteudo + "</p>";
-        listaRegistro.innerHTML +=
-        "<hr>";
-    }
 
+    for (let i = 0; i < registros.length; i++) { // Percorre todos os registros
+        listaRegistro.innerHTML += "<p>Matéria: " + registros[i].materia + "</p>";
+        listaRegistro.innerHTML += "<p>Título: " + registros[i].titulo + "</p>";
+        listaRegistro.innerHTML += "<p>Conteúdo: " + registros[i].conteudo + "</p>";
+        listaRegistro.innerHTML += "<button onclick='deletarRegistro(" + registros[i].id + ")'>Excluir</button>";
+        listaRegistro.innerHTML += "<button onclick='editRegistro(" + registros[i].id + ", prompt(\"Nova matéria:\", \"" + registros[i].materia + "\"), prompt(\"Novo título:\", \"" + registros[i].titulo + "\"), prompt(\"Novo conteúdo:\", \"" + registros[i].conteudo + "\"))'>Editar</button>";
+        listaRegistro.innerHTML += "<hr>";
+    }
 }
+function editRegistro(id){}
 
 function buscarMateria() {
     let busca = document.getElementById("busca").value;
     let encontrado = [];
-     
+
     for (let i = 0; i < registros.length; i++) { // Percorre todos os registros
         if (registros[i].materia.toLowerCase() === busca.toLowerCase()) { // Se a matéria = a busca
             encontrado.push(registros[i]); // Pega os valores e coloca na lista encontrados
@@ -53,49 +59,48 @@ function buscarMateria() {
     }
 
     if (encontrado.length === 0) { //Caso não ache nada
+        alert("Nenhum registro encontrado para essa matéria.");
         return;
     }
 
-    let texto = ""
+    let texto = "";
     for (let i = 0; i < encontrado.length; i++) { //Percorre a lista de encontrados
         texto += "\n---\n"; //Adiciona os dados dentro de texto
         texto += "Matéria: " + encontrado[i].materia + "\n";
         texto += "Título: " + encontrado[i].titulo + "\n";
         texto += "Conteúdo: " + encontrado[i].conteudo + "\n";
     }
-}   
-function deletarRegistro() {
-    let tamantes = registros.length; // Guarda o tamanho da lista antes de deletar
-    registros = registros.filter(r =>r.id !== id); // Filtra a lista, removendo o registro com o ID informado
-    if (registros.length < tamantes) { // Se o tamanho da lista diminuiu, significa que o registro foi deletado
-        saveRegistros(); // Salva os registros após deletar
-    } else {
-    }
+
+    alert(texto);
+}
+
+function deletarRegistro(id) {
+    registros = registros.filter(r => r.id !== id); // Filtra a lista, removendo o registro com o ID informado
+    salvarRegistros(); // Salva os registros após deletar
     verRegistros(); // Atualiza a lista de registros exibida
 }
 
-function editRegistro() {
+function editRegistro(id, novaMateria, novoTitulo, novoConteudo) {
     let registro = registros.find(r => r.id === id); // Procura o registro com o ID informado
 
     if (registro) { // Se o registro foi encontrado
-        
         if (novaMateria) registro.materia = novaMateria;
         if (novoTitulo) registro.titulo = novoTitulo;
         if (novoConteudo) registro.conteudo = novoConteudo;
 
-        saveRegistros(); // Salva os registros após editar
-    } else {
+        salvarRegistros(); // Salva os registros após editar
+        verRegistros();
     }
 }
-function saveRegistros() {
+
+function salvarRegistros() {
     localStorage.setItem("registros", JSON.stringify(registros));
 }
 
-function loadRegistros() {
+function carregarRegistros() {
     let registrosSalvos = localStorage.getItem("registros");
     if (registrosSalvos) {
         registros = JSON.parse(registrosSalvos);
         contador = registros.length; // Atualiza o contador para evitar IDs duplicados
-    } else {
     }
 }
