@@ -1,15 +1,19 @@
 let registros = [];
 let contador = 0;
 let idEditando = null;
-carregarRegistros(); // Carrega os registros salvos ao iniciar o programa
 verRegistros(); // Exibe os registros carregados
 
 function criarRegistro() {
-    let id_registro = contador++;
     let materia = document.getElementById("materia").value;
     let titulo = document.getElementById("titulo").value;
     let conteudo = document.getElementById("conteudo").value;
 
+    if (materia === "" || titulo === "" || conteudo === "") {
+        alert("Todos os campos devem ser preenchidos.");
+        return;
+    }
+
+    let id_registro = contador++;
     let registro = {
         id: id_registro,
         materia: materia,
