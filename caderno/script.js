@@ -4,9 +4,9 @@ let idEditando = null;
 verRegistros(); // Exibe os registros carregados
 
 function criarRegistro() {
-    let materia = document.getElementById("materia").value;
-    let titulo = document.getElementById("titulo").value;
-    let conteudo = document.getElementById("conteudo").value;
+    let materia = document.getElementById("materia").value.trim();
+    let titulo = document.getElementById("titulo").value.trim();
+    let conteudo = document.getElementById("conteudo").value.trim();
 
     if (materia === "" || titulo === "" || conteudo === "") {
         alert("Todos os campos devem ser preenchidos.");
@@ -53,7 +53,7 @@ function verRegistros() {
     }
 }
 function abrirModal(id){
-    document.getElementById("modalEditar").style.display = "block";
+    document.getElementById("modalEditar").style.display = "flex";
     idEditando = id;
     let registro = registros.find(r => r.id === id);
         document.getElementById("editarmateria").value = registro.materia
@@ -62,9 +62,9 @@ function abrirModal(id){
 }
 function alterarRegistro() {
     let registro = registros.find(r => r.id === idEditando);
-    registro.materia = document.getElementById("editarmateria").value;
-    registro.titulo = document.getElementById("editartitulo").value;
-    registro.conteudo = document.getElementById("editarconteudo").value;
+    registro.materia = document.getElementById("editarmateria").value.trim();
+    registro.titulo = document.getElementById("editartitulo").value.trim();
+    registro.conteudo = document.getElementById("editarconteudo").value.trim();
 
     salvarRegistros(); // Salva os registros após editar
     verRegistros(); // Atualiza a lista de registros exibida
