@@ -12,8 +12,8 @@ function verRegistros() {
         listaRegistro.innerHTML += "<p>Matéria: " + registros[i].materia + "</p>";
         listaRegistro.innerHTML += "<p>Título: " + registros[i].titulo + "</p>";
         listaRegistro.innerHTML += "<p>Conteúdo: " + registros[i].conteudo + "</p>";
-        listaRegistro.innerHTML += "<button class='btn-excluir' data-id='1'>Excluir</button>"
-        listaRegistro.innerHTML += "<button onclick='abrirModal("+ registros[i].id + ")'>Editar</button>"
+        listaRegistro.innerHTML += "<button class='btn-excluir' data-id='" + registros[i].id + "'>Excluir</button>";
+        listaRegistro.innerHTML += "<button class='btn-editar' data-id='" + registros[i].id + "'>Editar</button>";
         listaRegistro.innerHTML += "<hr>";
     }
 }
