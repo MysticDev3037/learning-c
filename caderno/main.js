@@ -3,3 +3,8 @@ function iniciarApp(){
     verRegistros();
 }
 iniciarApp();
+function iniciarEventos(){
+    document.getElementById("btnAdicionar")
+        addEventListener("click",criarRegistro);
+        
+}
