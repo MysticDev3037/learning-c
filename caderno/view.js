@@ -1,6 +1,7 @@
 // INTERFACE Funções que alterem a interface do usuario
 function verRegistros() {
     let listaRegistro = document.getElementById("listaRegistro");
+
     listaRegistro.innerHTML = ""; // Limpa a lista antes de adicionar os registros
 
     if (registros.length === 0) {
@@ -9,12 +10,32 @@ function verRegistros() {
     }
 
     for (let i = 0; i < registros.length; i++) { // Percorre todos os registros
-        listaRegistro.innerHTML += "<p>Matéria: " + registros[i].materia + "</p>";
-        listaRegistro.innerHTML += "<p>Título: " + registros[i].titulo + "</p>";
-        listaRegistro.innerHTML += "<p>Conteúdo: " + registros[i].conteudo + "</p>";
-        listaRegistro.innerHTML += "<button class='btn-excluir' data-id='" + registros[i].id + "'>Excluir</button>";
-        listaRegistro.innerHTML += "<button class='btn-editar' data-id='" + registros[i].id + "'>Editar</button>";
-        listaRegistro.innerHTML += "<hr>";
+        let botao =document.createElement("button") //Quando vc cria na memoria, você coloca a referência de cada botão na variavel "botão", não o nome "botão" então não da erro, a cada loop o "botao" aponta pra um botão novo
+        let materia = document.createElement("p");
+        let titulo = document.createElement("p");
+        let conteudo = document.createElement("p");
+        let botaoeditar = document.createElement("button");
+        let linha = document.createElement("hr");
+
+
+        materia.textContent = "Matéria:" + registros[i].materia;
+        listaRegistro.appendChild(materia);
+
+        titulo.textContent = "Título:" + registros[i].titulo;
+        listaRegistro.appendChild(titulo);
+
+        conteudo.textContent = "Conteúdo:" + registros[i].conteudo;
+        listaRegistro.appendChild(conteudo);
+
+        botao.textContent = "Excluir";
+        botao.className="btn-excluir";
+        botao.dataset.id=registros[i].id;
+        listaRegistro.appendChild(botao);
+
+        botaoeditar.textContent = "Editar";
+        botaoeditar.className="btn-editar";
+        botaoeditar.dataset.id=registro[i].id;
+        listaRegistro.appendChild(botaoeditar);
     }
 }
 
