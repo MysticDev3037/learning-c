@@ -10,33 +10,46 @@ function verRegistros() {
     }
 
     for (let i = 0; i < registros.length; i++) { // Percorre todos os registros
-        let botao =document.createElement("button") //Quando vc cria na memoria, você coloca a referência de cada botão na variavel "botão", não o nome "botão" então não da erro, a cada loop o "botao" aponta pra um botão novo
-        let materia = document.createElement("p");
-        let titulo = document.createElement("p");
-        let conteudo = document.createElement("p");
-        let botaoeditar = document.createElement("button");
+        let card = document.createElement("div");
+        card.className = "card"; //Jogar toos os itens dentro dele pra apenas precisar invocar ele e n precisar invocar todos
+
+        let materia = criarParagrafo("Matéria", registros[i].materia);
+        let titulo = criarParagrafo("Título", registros[i].titulo);
+        let conteudo = criarParagrafo("Contéudo", registros[i].conteudo);
+
+        let botaoeditar = gerarBotao("Editar", "btn-editar",registros[i].id);
+        let botaoexcluir = gerarBotao("Excluir", "btn-excluir", registros[i].id);
         let linha = document.createElement("hr");
 
 
-        materia.textContent = "Matéria:" + registros[i].materia;
-        listaRegistro.appendChild(materia);
 
-        titulo.textContent = "Título:" + registros[i].titulo;
-        listaRegistro.appendChild(titulo);
+        listaRegistro.appendChild(card); //Invoca o card com tudo
+        listaRegistro.appendChild(linha);
 
-        conteudo.textContent = "Conteúdo:" + registros[i].conteudo;
-        listaRegistro.appendChild(conteudo);
-
-        botao.textContent = "Excluir";
-        botao.className="btn-excluir";
-        botao.dataset.id=registros[i].id;
-        listaRegistro.appendChild(botao);
-
-        botaoeditar.textContent = "Editar";
-        botaoeditar.className="btn-editar";
-        botaoeditar.dataset.id=registro[i].id;
-        listaRegistro.appendChild(botaoeditar);
     }
+}
+function gerarCard(registro[i]){
+    let card = document.createElement("div");
+    card.appendChild(criarParagrafo("Matéria",registro[id].materia));// Adiciona tudo detro do card
+    card.appendChild(criarParagrafo("titulo",registro[id].titulo);
+    card.appendChild(conteudo);
+    card.appendChild(botaoeditar);
+    card.appendChild(botaoexcluir);
+    card.appendChild(linha);
+    return card;
+}
+function gerarBotao(texto, classe, id){
+    let botao = document.createElement("button")
+    botao.textContent = texto;
+    botao.className = classe;
+    botao.dataset.id = id;
+    return botao;
+}
+
+function criarParagrafo(rotulo, valor){
+    let paragrafo = document.createElement("p");
+    paragrafo.textContent = rotulo + ":" + valor;
+    return paragrafo;
 }
 
 function abrirModal(id){
