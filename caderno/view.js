@@ -1,6 +1,6 @@
 // INTERFACE Funções que alterem a interface do usuario
 function verRegistros() {
-    let listaRegistro = document.getElementById("listaRegistro");
+    let listaRegistro = getel("listaRegistro");
 
     listaRegistro.innerHTML = ""; // Limpa a lista antes de adicionar os registros
 
@@ -10,32 +10,21 @@ function verRegistros() {
     }
 
     for (let i = 0; i < registros.length; i++) { // Percorre todos os registros
-        let card = document.createElement("div");
-        card.className = "card"; //Jogar toos os itens dentro dele pra apenas precisar invocar ele e n precisar invocar todos
-
-        let materia = criarParagrafo("Matéria", registros[i].materia);
-        let titulo = criarParagrafo("Título", registros[i].titulo);
-        let conteudo = criarParagrafo("Contéudo", registros[i].conteudo);
-
-        let botaoeditar = gerarBotao("Editar", "btn-editar",registros[i].id);
-        let botaoexcluir = gerarBotao("Excluir", "btn-excluir", registros[i].id);
-        let linha = document.createElement("hr");
-
-
-
+        let linha = document.createElement("hr"); //let Define uma variavel que posso mudar o valor
+        const card = gerarCard(registros[i]); // Gera o card para cada registro// já const n posso mudar
         listaRegistro.appendChild(card); //Invoca o card com tudo
         listaRegistro.appendChild(linha);
 
     }
 }
-function gerarCard(registro[i]){
+function gerarCard(registro){
     let card = document.createElement("div");
-    card.appendChild(criarParagrafo("Matéria",registro[id].materia));// Adiciona tudo detro do card
-    card.appendChild(criarParagrafo("titulo",registro[id].titulo);
-    card.appendChild(conteudo);
-    card.appendChild(botaoeditar);
-    card.appendChild(botaoexcluir);
-    card.appendChild(linha);
+    card.className = "card";
+    card.appendChild(criarParagrafo("Matéria",registro.materia));// Adiciona tudo detro do card
+    card.appendChild(criarParagrafo("Título",registro.titulo));
+    card.appendChild(criarParagrafo("Conteúdo",registro.conteudo));
+    card.appendChild(gerarBotao("Editar", "btn-editar", registro.id));
+    card.appendChild(gerarBotao("Excluir", "btn-excluir", registro.id));
     return card;
 }
 function gerarBotao(texto, classe, id){
@@ -45,31 +34,33 @@ function gerarBotao(texto, classe, id){
     botao.dataset.id = id;
     return botao;
 }
+function getel(id){
+    return document.getElementById(id);
+}
 
-function criarParagrafo(rotulo, valor){
+function criarParagrafo(rotulo, registro){
     let paragrafo = document.createElement("p");
-    paragrafo.textContent = rotulo + ":" + valor;
+    paragrafo.textContent = rotulo + ":" + registro;
     return paragrafo;
 }
 
 function abrirModal(id){
-    document.getElementById("modalEditar").style.display = "flex";
-    idEditando = id;
+    getel("modalEditar").style.display = "flex";
     let registro = registros.find(r => r.id === id);
-        document.getElementById("editarmateria").value = registro.materia
-        document.getElementById("editartitulo").value = registro.titulo
-        document.getElementById("editarconteudo").value = registro.conteudo
+        getel("editarmateria").value = registro.materia
+        getel("editartitulo").value = registro.titulo
+        getel("editarconteudo").value = registro.conteudo
 }
 function limparCampos() {
-    document.getElementById("materia").value = "";
-    document.getElementById("titulo").value = "";
-    document.getElementById("conteudo").value = "";
-    document.getElementById("materia").focus(); // Coloca o foco de volta no campo de matéria
+    getel("materia").value = "";
+    getel("titulo").value = "";
+    getel("conteudo").value = "";
+    getel("materia").focus(); // Coloca o foco de volta no campo de matéria
 }
 function cancelarEdicao(){
-    document.getElementById("modalEditar").style.display = "none";
+    getel("modalEditar").style.display = "none";
     idEditando = null;
-    document.getElementById("editarmateria").value = "";
-    document.getElementById("editartitulo").value = "";
-    document.getElementById("editarconteudo").value = "";
+    getel("editarmateria").value = "";
+    getel("editartitulo").value = "";
+    getel("editarconteudo").value = "";
 }
