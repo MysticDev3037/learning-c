@@ -1,8 +1,8 @@
 //LÓGICA Os controles que o usuario pode usar direta ou indiretamente
 function criarRegistro() {
-    let materia = document.getElementById("materia").value.trim();
-    let titulo = document.getElementById("titulo").value.trim();
-    let conteudo = document.getElementById("conteudo").value.trim();
+    let materia = getel("materia").value.trim();
+    let titulo = getel("titulo").value.trim();
+    let conteudo = getel("conteudo").value.trim();
 
     if (materia === "" || titulo === "" || conteudo === "") {
         alert("Todos os campos devem ser preenchidos.");
@@ -25,9 +25,9 @@ function criarRegistro() {
 
 function alterarRegistro() {
     let registro = registros.find(r => r.id === idEditando);
-    registro.materia = document.getElementById("editarmateria").value.trim();
-    registro.titulo = document.getElementById("editartitulo").value.trim();
-    registro.conteudo = document.getElementById("editarconteudo").value.trim();
+    registro.materia = getel("editarmateria").value.trim();
+    registro.titulo = getel("editartitulo").value.trim();
+    registro.conteudo = getel("editarconteudo").value.trim();
 
     salvarRegistros(); // Salva os registros após editar
     verRegistros(); // Atualiza a lista de registros exibida
@@ -41,7 +41,7 @@ function deletarRegistro(id) {
 }
 
 function buscarMateria() {
-    let busca = document.getElementById("busca").value;
+    let busca = getel("busca").value;
     let encontrado = [];
 
     for (let i = 0; i < registros.length; i++) { // Percorre todos os registros

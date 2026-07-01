@@ -12,11 +12,11 @@ function iniciarEventos(){
     document
         .getElementById("listaRegistro")
         .addEventListener("click", function(evento){
-            let id = evento.target;
-            if (evento.classList.contains("btn-excluir")) {
+            let alvo = evento.target;
+            if (alvo.classList.contains("btn-excluir")) {
                 const id = Number(evento.target.dataset.id);
                 deletarRegistro(id);
-            } else if (evento.classList.contains("btn-editar")) {
+            } else if (alvo.classList.contains("btn-editar")) {
                 const id = Number(evento.target.dataset.id);
                 abrirModal(id);
             }

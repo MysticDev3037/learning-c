@@ -1,20 +1,17 @@
 // INTERFACE Funções que alterem a interface do usuario
 function verRegistros() {
     let listaRegistro = getel("listaRegistro");
-
     listaRegistro.innerHTML = ""; // Limpa a lista antes de adicionar os registros
 
     if (registros.length === 0) {
         listaRegistro.innerHTML = "<p>Nenhum registro encontrado.</p>";
-        return;
+        return; //Escapa direto pro escopo
     }
-
     for (let i = 0; i < registros.length; i++) { // Percorre todos os registros
         let linha = document.createElement("hr"); //let Define uma variavel que posso mudar o valor
         const card = gerarCard(registros[i]); // Gera o card para cada registro// já const n posso mudar
         listaRegistro.appendChild(card); //Invoca o card com tudo
         listaRegistro.appendChild(linha);
-
     }
 }
 function gerarCard(registro){
@@ -34,7 +31,7 @@ function gerarBotao(texto, classe, id){
     botao.dataset.id = id;
     return botao;
 }
-function getel(id){
+function getel(id){ //Otimiza a busca de elementos no DOM, evitando repetição de código
     return document.getElementById(id);
 }
 
