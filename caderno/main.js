@@ -1,23 +1,25 @@
 
 function iniciarEventos(){
-    document
-        .getElementById("btnAdicionar")
+        getel("btnAdicionar")
         .addEventListener("click", criarRegistro);
-    document
-        .getElementById("btnSalvar")
+        getel("buscar")
+        .addEventListener("input", function() {
+            filtrarRegistros(registros);
+        });
+
+        getel("btnSalvar")
         .addEventListener("click", alterarRegistro);
-    document
-        .getElementById("btnCancelar")
+        getel("btnCancelar")
         .addEventListener("click", cancelarEdicao);
-    document
-        .getElementById("listaRegistro")
+
+        getel("listaRegistro")
         .addEventListener("click", function(evento){
             let alvo = evento.target;
             if (alvo.classList.contains("btn-excluir")) {
-                const id = Number(evento.target.dataset.id);
+                const id = Number(alvo.dataset.id);
                 deletarRegistro(id);
             } else if (alvo.classList.contains("btn-editar")) {
-                const id = Number(evento.target.dataset.id);
+                const id = Number(alvo.dataset.id);
                 abrirModal(id);
             }
         });
