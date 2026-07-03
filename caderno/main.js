@@ -27,7 +27,7 @@ function iniciarEventos(){
 
 function iniciarSistema(){
     carregarRegistro();
-    verRegistros();
+    filtrarRegistros(registros);
     iniciarEventos();
 }
 

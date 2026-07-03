@@ -14,16 +14,27 @@ function verRegistros(listarg) {
         listaRegistro.appendChild(linha);
     }
 }
-function filtrarRegistros(registros) {
+function filtrarRegistros(reg) {
     let busca = getel("buscar").value.trim().toLowerCase();
     if (busca === "") {
-        return;
+        return verRegistros(registros); // Se a busca estiver vazia, exibe todos os registros
     }
     else {
-        alert("Teste")
-        let encontrados = registros.filter(r => r.materia.toLowerCase() === busca);
+        let encontrados = reg.filter(r => {
+            if (getel("ch-materia").checked){
+                return r.materia.toLowerCase().includes(busca);
+            }
+            if (getel("ch-titulo").checked){
+                return r.titulo.toLowerCase().includes(busca);
+            }
+            if (getel("ch-conteudo").checked){
+                return r.conteudo.toLowerCase().includes(busca);
+            }
+            return false;
+        });
+
         if (encontrados.length === 0) {
-            alert("Nenhum registro encontrado para essa matéria.");
+            listaRegistro.innerHTML = "";
             return;
         }
         verRegistros(encontrados);

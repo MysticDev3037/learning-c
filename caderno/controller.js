@@ -19,7 +19,7 @@ function criarRegistro() {
 
     registros.push(registro);
     salvarRegistros(); // Salva os registros após criar um novo
-    verRegistros(); // Atualiza a lista de registros exibida
+    filtrarRegistros(registros); // Atualiza a lista de registros exibida
     limparCampos(); // Limpa os campos do formulário
 }
 
@@ -30,14 +30,14 @@ function alterarRegistro() {
     registro.conteudo = getel("editarconteudo").value.trim();
 
     salvarRegistros(); // Salva os registros após editar
-    verRegistros(); // Atualiza a lista de registros exibida
+    filtrarRegistros(registros); // Atualiza a lista de registros exibida
     cancelarEdicao(); // Fecha o modal de edição
 }
 
 function deletarRegistro(id) {
     registros = registros.filter(r => r.id !== id); // Filtra a lista, removendo o registro com o ID informado
     salvarRegistros(); // Salva os registros após deletar
-    verRegistros(); // Atualiza a lista de registros exibida
+    filtrarRegistros(registros); // Atualiza a lista de registros exibida
 }
 
 function buscarMateria() {
