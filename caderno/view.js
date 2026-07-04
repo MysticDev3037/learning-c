@@ -8,10 +8,8 @@ function verRegistros(listarg) {
         return; //Escapa direto pro escopo
     }
     for (let i = 0; i < listarg.length; i++) { // Percorre todos os registros
-        let linha = document.createElement("hr"); //let Define uma variavel que posso mudar o valor
         const card = gerarCard(listarg[i]); // Gera o card para cada registro// já const n posso mudar
         listaRegistro.appendChild(card); //Invoca o card com tudo
-        listaRegistro.appendChild(linha);
     }
 }
 function filtrarRegistros(reg) {
@@ -22,21 +20,16 @@ function filtrarRegistros(reg) {
     else {
         let encontrados = reg.filter(r => {
             if (getel("ch-materia").checked){
-                return r.materia.toLowerCase().includes(busca);
+                r.materia.toLowerCase().includes(busca);
             }
             if (getel("ch-titulo").checked){
-                return r.titulo.toLowerCase().includes(busca);
+                r.titulo.toLowerCase().includes(busca);
             }
             if (getel("ch-conteudo").checked){
-                return r.conteudo.toLowerCase().includes(busca);
+                r.conteudo.toLowerCase().includes(busca);
             }
             return false;
         });
-
-        if (encontrados.length === 0) {
-            listaRegistro.innerHTML = "";
-            return;
-        }
         verRegistros(encontrados);
     }
 }
