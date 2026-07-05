@@ -21,6 +21,7 @@ function criarRegistro() {
     salvarRegistros(); // Salva os registros após criar um novo
     filtrarRegistros(registros); // Atualiza a lista de registros exibida
     limparCampos(); // Limpa os campos do formulário
+    getel("camp-data").value = dataAtual(); // Atualiza a data no campo de data
 }
 
 function alterarRegistro() {

@@ -29,6 +29,7 @@ function iniciarSistema(){
     carregarRegistro();
     filtrarRegistros(registros);
     iniciarEventos();
+    getel("camp-data").value = dataAtual(); // Define a data atual no campo de data
 }
 
 iniciarSistema();

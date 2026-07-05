@@ -99,3 +99,10 @@ function gerarRodape(registro){
     rodape.appendChild(gerarBotao("Excluir", "btn-excluir", registro.id));
     return rodape;
 } // Gera o rodapé da página
+function dataAtual(){
+    let data = new Date();
+    let dia = String(data.getDate()).padStart(2, '0');
+    let mes = String(data.getMonth() + 1).padStart(2, '0'); // Janeiro é 0
+    let ano = data.getFullYear();
+    return `${ano}-${mes}-${dia}`; // Formato YYYY-MM-DD
+}

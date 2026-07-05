@@ -15,20 +15,22 @@ button {
 
 .card {
     border: 1px solid #ccc;
-    padding:30
-    margin-top: 10px;
-    margin-bottom: 15;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    margin-top: 15px;
     border-radius: 5px;
-    .card-header
-
-    .card-body
-
-    .card-footer
-
-    .btn-editar
-
-    .btn-excluir
 }
+.card-header {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-footer {
+    gap: 20px;
+}
+
+
+
 #modalEditar {
     /* Configurando o fundo preto que fica antes da tela flutuante que estará nosso painel*/
     display: none;
@@ -51,6 +53,6 @@ button {
 
 .modal-content{
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
 }
