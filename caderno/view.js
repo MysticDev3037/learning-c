@@ -7,9 +7,10 @@ function verRegistros(listarg) {
         listaRegistro.innerHTML = "<p>Nenhum registro encontrado.</p>";
         return; //Escapa direto pro escopo
     }
-    for (let i = 0; i < listarg.length; i++) { // Percorre todos os registros
-        const card = gerarCard(listarg[i]); // Gera o card para cada registro// já const n posso mudar
-        listaRegistro.appendChild(card); //Invoca o card com tudo
+    let ordenado = ordenarRegistros(listarg);
+    for (let i = 0; i < ordenado.length; i++) {
+        const card = gerarCard(ordenado[i]);
+        listaRegistro.appendChild(card);
     }
 }
 function filtrarRegistros(reg) {
@@ -19,18 +20,30 @@ function filtrarRegistros(reg) {
     }
     else {
         let encontrados = reg.filter(r => {
+            let ok = false;
             if (getel("ch-materia").checked){
-                r.materia.toLowerCase().includes(busca);
+                ok = ok || r.materia.toLowerCase().includes(busca);
             }
             if (getel("ch-titulo").checked){
-                r.titulo.toLowerCase().includes(busca);
+                ok = ok || r.titulo.toLowerCase().includes(busca);
             }
             if (getel("ch-conteudo").checked){
-                r.conteudo.toLowerCase().includes(busca);
+                ok = ok || r.conteudo.toLowerCase().includes(busca);
             }
-            return false;
+            return ok;
         });
         verRegistros(encontrados);
+    }
+}
+function formatarData(data) {
+    let [ano, mes, dia] = data.split("-");
+    return `${dia}/${mes}/${ano}`; // Retorna no formato DD/MM/AAAA
+}
+function ordenarRegistros(reg) {
+    if (ordemlista) {
+        return [...reg].sort((a, b) => new Date(b.data) - new Date(a.data)); // Mais recentes primeiro
+    } else {
+        return [...reg].sort((a, b) => new Date(a.data) - new Date(b.data)); // Mais antigos primeiro
     }
 }
 function gerarCard(registro){
@@ -54,6 +67,9 @@ function getel(id){ //Otimiza a busca de elementos no DOM, evitando repetição 
 
 function criarParagrafo(rotulo, registro){
     let paragrafo = document.createElement("p");
+    if (rotulo =="") {
+        paragrafo.textContent = registro;
+    } else
     paragrafo.textContent = rotulo + ":" + registro;
     return paragrafo;
 }
@@ -82,6 +98,7 @@ function gerarCabecalho(registro){
     let cabecalho = document.createElement("div");
     cabecalho.className = "card-header";
     cabecalho.appendChild(criarParagrafo("Matéria", registro.materia));
+    cabecalho.appendChild(criarParagrafo("",formatarData(registro.data)));
     return cabecalho;
 
 } // Gera o cabeçalho da página

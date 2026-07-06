@@ -3,6 +3,7 @@ function criarRegistro() {
     let materia = getel("materia").value.trim();
     let titulo = getel("titulo").value.trim();
     let conteudo = getel("conteudo").value.trim();
+    let data = getel("camp-data").value.trim();
 
     if (materia === "" || titulo === "" || conteudo === "") {
         alert("Todos os campos devem ser preenchidos.");
@@ -14,9 +15,9 @@ function criarRegistro() {
         id: id_registro,
         materia: materia,
         titulo: titulo,
-        conteudo: conteudo
+        conteudo: conteudo,
+        data: data
     };
-
     registros.push(registro);
     salvarRegistros(); // Salva os registros após criar um novo
     filtrarRegistros(registros); // Atualiza a lista de registros exibida

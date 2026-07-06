@@ -2,3 +2,4 @@
 let registros = [];
 let contador = 0;
 let idEditando = null;
+let ordemlista = true;

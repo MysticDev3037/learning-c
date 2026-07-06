@@ -15,14 +15,24 @@ button {
 
 .card {
     border: 1px solid #ccc;
-    padding-left: 15px;
-    padding-bottom: 15px;
+    padding: 15px;
     margin-top: 15px;
     border-radius: 5px;
 }
+.card p {
+    margin: 0px 0;
+    margin-bottom: 10px;
+}
 .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 18px;
     font-weight: bold;
+}
+.card-header span {
+    font-size: 142x;
+    color: gray;
 }
 
 .card-footer {
