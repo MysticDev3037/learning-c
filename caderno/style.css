@@ -3,8 +3,18 @@ body{
     margin: 0;
 }
 .topbar{
-    height: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between; /*Centraliza Horiontalmente*/
+    flex-direction: row; /*Alinha os filhos na horizontal*/
+    padding: 15px;
 } 
+#buscar{
+    width: 500px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 10px;
+}
 
 .layout{
     display: flex;
@@ -13,28 +23,53 @@ body{
 .workspace{
     flex: 1;
     display: flex;
+    flex-direction: column;
+    padding: 20px;
 
-    justify-content: center; /* Centraliza Horiontalmente*/
+    justify-content: flex-start; /* Centraliza Horiontalmente*/
+    align-items: center; /* Centraliza Verticalmente*/
     overflow-y: auto; /* Adiciona barra de rolagem vertical  se extrapolar o tamanho*/
     border: 2px solid blue;
 
+}
+#novoRegistro{
+    width: 800px;
+    padding: 10px;
+    border-radius: 10px;
 }
 .sidebar{
     width: 250px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 10px;
     border: 2px solid red;
 }
-.content{
+.btnmateria{
+    padding: 7px;
+
+    border: 1px solid black;
+    border-radius: 10px;
+
+    margin: 0;
+}
+.card{
     width: 850px;
     min-height: 1100px;
 
-    padding: 40px;
+    padding: 40px; /*Espaço dentro da filha pra n deixar o texto grudado nas bordas*/
+    margin: 30px; /* Espaço entre o contento e a borda do workspace*/
 
+    background-color: white;
+    border-radius: 30px;
     border: 2px solid green;
+    padding: 20px;
 }
 .details{
     width: 280px;
     border: 2px solid orange;
+    padding: 20px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }

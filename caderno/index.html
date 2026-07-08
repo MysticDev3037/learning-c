@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Caderno de Estudos</title>
-    <link rel="stylesheet" href="style-v1.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -20,29 +20,31 @@
 
     <div class="layout">    
         <aside class="sidebar">
-            <button>Estrutura de Dados</button>
-            <button>Design UX</button>
-            <button>Arquitetura</button>
-            <button>Banco de Dados</button>
+            <button class="btnmateria">Estrutura de Dados</button>
+            <button class="btnmateria">Design UX</button>
+            <button class="btnmateria">Arquitetura</button>
+            <button class="btnmateria">Banco de Dados</button>
         </aside>
 
         <main class="workspace">
-            <article class="content" id="content">
-                <h1>Conteúdo</h1>
+            <section class="workspace-header">
+                <input type="text" placeholder="Título" id="novoRegistro">
+            </section>
+            <section class="workspace-content" id="listaRegistro">
 
-            </article>
+            </section>
         </main>
         <aside class="details">
-
-            <h2>Informações</h2>
-
-            <p>Título:</p>
-
-            <p>Matéria:</p>
-
-            <p>Data:</p>
+            <article class="infocontent" id="infocontent"></article>
 
         </aside>
     </div>
+
+<script src="model.js"></script>
+<script src="storage.js"></script>
+<script src="view.js"></script>
+<script src="controller.js"></script>
+<script src="main.js"></script>
+
 
 </body>

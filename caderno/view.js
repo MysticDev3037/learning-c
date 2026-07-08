@@ -47,7 +47,7 @@ function ordenarRegistros(reg) {
     }
 }
 function gerarCard(registro){
-    let card = document.createElement("div");
+    let card = document.createElement("article");
     card.className = "card";
     card.appendChild(gerarCabecalho(registro)); // Adiciona o cabeçalho ao card
     card.appendChild(gerarCorpo(registro)); // Adiciona o corpo ao card
