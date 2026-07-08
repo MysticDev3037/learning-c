@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Caderno de Estudos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Caderno de Estudos</h1>
+
+<div class="form">
+    <input id="materia" placeholder="Matéria">
+    <input id="titulo" placeholder="Título">
+    <input id="conteudo" placeholder="Conteúdo">
+    <button id="btnAdicionar">Adicionar</button>
+    <input id="buscar" placeholder="Pesquisar">
+    <input type="checkbox" id="ch-materia" checked>
+    <label for="ch-materia">Matéria</label>
+    <input type="checkbox" id="ch-titulo" checked>
+    <label for="ch-titulo">Título</label>
+    <input type="checkbox" id="ch-conteudo" checked>
+    <label for="ch-conteudo">Conteúdo</label>
+    <input type="date" id="camp-data">
+    <button id="btnOrdem">Mais recentes</button>
+</div>
+
+<h2>Registros</h2>
+<div id="listaRegistro"></div>
+
+<div id="modalEditar">
+    <div class="modal-content">
+        <input id="editarmateria" placeholder="Matéria">
+        <input id="editartitulo" placeholder="Título">
+        <input id="editarconteudo" placeholder="Conteúdo">
+        <button id="btnSalvar">Salvar</button>
+        <button id="btnCancelar">Cancelar</button>
+    </div>  
+</div>
+
+<script src="model.js"></script>
+<script src="storage.js"></script>
+<script src="view.js"></script>
+<script src="controller.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>

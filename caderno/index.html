@@ -3,46 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Caderno de Estudos</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-v1.css">
 </head>
+
 <body>
+    <header class="topbar">
+        <button id="btnAmbient">Ambientes</button>
+        <input
+            type="text"
+            placeholder="Pesquisar"
+            id="buscar"
+        />
+        <button id="btnPerfil">Perfil</button>
 
-<h1>Caderno de Estudos</h1>
+    </header>
 
-<div class="form">
-    <input id="materia" placeholder="Matéria">
-    <input id="titulo" placeholder="Título">
-    <input id="conteudo" placeholder="Conteúdo">
-    <button id="btnAdicionar">Adicionar</button>
-    <input id="buscar" placeholder="Pesquisar">
-    <input type="checkbox" id="ch-materia" checked>
-    <label for="ch-materia">Matéria</label>
-    <input type="checkbox" id="ch-titulo" checked>
-    <label for="ch-titulo">Título</label>
-    <input type="checkbox" id="ch-conteudo" checked>
-    <label for="ch-conteudo">Conteúdo</label>
-    <input type="date" id="camp-data">
-    <button id="btnOrdem">Mais recentes</button>
-</div>
+    <div class="layout">    
+        <aside class="sidebar">
+            <button>Estrutura de Dados</button>
+            <button>Design UX</button>
+            <button>Arquitetura</button>
+            <button>Banco de Dados</button>
+        </aside>
 
-<h2>Registros</h2>
-<div id="listaRegistro"></div>
+        <main class="workspace">
+            <article class="content" id="content">
+                <h1>Conteúdo</h1>
 
-<div id="modalEditar">
-    <div class="modal-content">
-        <input id="editarmateria" placeholder="Matéria">
-        <input id="editartitulo" placeholder="Título">
-        <input id="editarconteudo" placeholder="Conteúdo">
-        <button id="btnSalvar">Salvar</button>
-        <button id="btnCancelar">Cancelar</button>
-    </div>  
-</div>
+            </article>
+        </main>
+        <aside class="details">
 
-<script src="model.js"></script>
-<script src="storage.js"></script>
-<script src="view.js"></script>
-<script src="controller.js"></script>
-<script src="main.js"></script>
+            <h2>Informações</h2>
+
+            <p>Título:</p>
+
+            <p>Matéria:</p>
+
+            <p>Data:</p>
+
+        </aside>
+    </div>
 
 </body>
-</html>
