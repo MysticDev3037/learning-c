@@ -34,10 +34,63 @@ body{
     border: 2px solid blue;
 
 }
-#novoRegistro{
-    width: 800px;
-    padding: 10px;
-    border-radius: 10px;
+.novo-registro{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 830px;
+    background-color: #1C1C1C;
+    border-radius: 20px ;
+    padding: 30px;
+}
+#materia,
+#titulo,
+#conteudo{
+    background:transparent;
+    border: none;
+    outline: none;
+    color: #444;
+}
+#materia::placeholder{
+    font-size: 18px;
+}
+#titulo::placeholder{
+    font-size: 18px;
+}
+#conteudo::placeholder{
+    font-size: 18px;
+}
+.novo-header{
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+.novo-header::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background-color: #808080;
+    border-radius: 999px;
+}
+.novo-body{
+    display: flex;
+}
+#materia{
+    width: 30%;
+}
+#titulo{
+    width:70%;
+}
+#conteudo {
+    resize: none;
+    width: 100%;
 }
 .sidebar{
     width: 250px;
@@ -47,7 +100,8 @@ body{
     padding: 10px;
     border: 2px solid red;
 }
-.bt-nmateria{
+
+.btn-materia{
     padding: 7px;
     border-radius: 10px;
 
@@ -69,6 +123,9 @@ body{
     padding: 20px 0;
     border-bottom: 1px solid #444;
 
+}
+.page .card:last-child{
+    border-bottom: none;
 }
 .card-header{
     display: flex;
