@@ -1,22 +1,62 @@
 // INTERFACE Funções que alterem a interface do usuario
 function verRegistros(listarg) {
+
     let listaRegistro = getel("listaRegistro");
-    listaRegistro.innerHTML = ""; // Limpa a lista antes de adicionar os registros
+    listaRegistro.innerHTML = "";
 
     if (listarg.length === 0) {
         listaRegistro.innerHTML = "<p>Nenhum registro encontrado.</p>";
-        return; //Escapa direto pro escopo
+        return;
     }
+
     let ordenado = ordenarRegistros(listarg);
+
+    let paginaAtual = gerarPagina();
+    listaRegistro.appendChild(paginaAtual);
+
+    let dataAnterior = null;
+
     for (let i = 0; i < ordenado.length; i++) {
-        const card = gerarCard(ordenado[i]);
-        listaRegistro.appendChild(card);
+
+        let registro = ordenado[i];
+
+        // Verifica se mudou a data (exceto no primeiro registro)
+        if (dataAnterior !== null && registro.data !== dataAnterior) {
+
+            paginaAtual = gerarPagina();
+            listaRegistro.appendChild(paginaAtual);
+
+        }
+
+        let card = gerarCard(registro);
+
+        paginaAtual.appendChild(card);
+
+        // Se o card não couber na página...
+        if (paginaAtual.scrollHeight > paginaAtual.clientHeight) {
+
+            // Remove da página atual
+            paginaAtual.removeChild(card);
+
+            // Cria uma nova página
+            paginaAtual = gerarPagina();
+            listaRegistro.appendChild(paginaAtual);
+
+            // Coloca o card na nova página
+            paginaAtual.appendChild(card);
+
+        }
+
+        // Guarda a data para comparar com o próximo registro
+        dataAnterior = registro.data;
+
     }
+
 }
 function filtrarRegistros(reg) {
     let busca = getel("buscar").value.trim().toLowerCase();
     if (busca === "") {
-        return verRegistros(registros); // Se a busca estiver vazia, exibe todos os registros
+        return verRegistros(registrosglobais); // Se a busca estiver vazia, exibe todos os registros
     }
     else {
         let encontrados = reg.filter(r => {
@@ -60,16 +100,10 @@ function gerarCard(registro){
     card.className = "card";
     card.appendChild(gerarCabecalho(registro)); // Adiciona o cabeçalho ao card
     card.appendChild(gerarCorpo(registro)); // Adiciona o corpo ao card
-    card.appendChild(gerarRodape(registro)); // Adiciona o rodapé ao card
     return card;
 }
-function gerarBotao(texto, classe, id){
-    let botao = document.createElement("button")
-    botao.textContent = texto;
-    botao.className = classe;
-    botao.dataset.id = id;
-    return botao;
-}
+
+
 function criarParagrafo(rotulo, registro){
     let paragrafo = document.createElement("p");
     if (rotulo === "Matéria") {
@@ -78,6 +112,8 @@ function criarParagrafo(rotulo, registro){
         paragrafo.className = "card-titulo"; // Adiciona a classe para estilização
     } else if (rotulo === "Conteúdo") {
         paragrafo.className = "card-conteudo"; // Adiciona a classe para estilização
+    } else if (rotulo === "Data") {
+        paragrafo.className = "card-data"
     }
     if (rotulo =="") {
         paragrafo.textContent = registro;
@@ -89,7 +125,7 @@ function gerarCabecalho(registro){
     let cabecalho = document.createElement("div");
     cabecalho.className = "card-header";
     cabecalho.appendChild(criarParagrafo("Matéria", registro.materia));
-    cabecalho.appendChild(criarParagrafo("",formatarData(registro.data)));
+    cabecalho.appendChild(criarParagrafo("Data",formatarData(registro.data)));
     return cabecalho;
 
 } // Gera o cabeçalho da página
@@ -100,13 +136,6 @@ corpo.appendChild(criarParagrafo("Título", registro.titulo));
     corpo.appendChild(criarParagrafo("Conteúdo", registro.conteudo));
     return corpo;
 } // Gera o corpo da página 
-function gerarRodape(registro){
-    let rodape = document.createElement("div");
-    rodape.className = "card-footer";
-    rodape.appendChild(gerarBotao("Editar", "btn-editar", registro.id));
-    rodape.appendChild(gerarBotao("Excluir", "btn-excluir", registro.id));
-    return rodape;
-} // Gera o rodapé da página
 function dataAtual(){
     let data = new Date();
     let dia = String(data.getDate()).padStart(2, '0');

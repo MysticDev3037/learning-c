@@ -2,7 +2,7 @@ function iniciarEventos() {
 
     // Campo de pesquisa
     getel("buscar").addEventListener("input", function () {
-        filtrarRegistros(registros);
+        filtrarRegistros(registrosglobais);
     });
 
     // Clique nos cards (delegação de eventos)
@@ -22,18 +22,14 @@ function iniciarEventos() {
 }
 
 function atualizarTela() {
-    filtrarRegistros(registros);
+    filtrarRegistros(registrosglobais);
 }
 
 function iniciarSistema() {
-
     carregarRegistro();      // Carrega os registros do localStorage
-
-    atualizarTela();         // Desenha os cards na tela
-
     iniciarEventos();        // Registra todos os eventos
-
-    atualizarSidebar(registros); // Atualiza a sidebar com as matérias
+    atualizarSidebar(registrosglobais); // Atualiza a sidebar com as matérias
+    atualizarTela();         // Atualiza a tela com os registross
 }
 
 iniciarSistema();

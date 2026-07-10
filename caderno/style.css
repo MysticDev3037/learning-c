@@ -26,6 +26,7 @@ body{
     display: flex;
     flex-direction: column;
     padding: 20px;
+    gap: 20px;
 
     justify-content: flex-start; /* Centraliza Horiontalmente*/
     align-items: center; /* Centraliza Verticalmente*/
@@ -52,18 +53,27 @@ body{
 
     margin: 0;
 }
+.page {
+    width: 850px;
+    height: 1100px;
+    
+    
+    background-color: #1C1C1C;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+
+}
 .card{
     color: white;
-    width: 850px;
-    min-height: 1100px;
+    padding: 20px 0;
+    border-bottom: 1px solid #444;
 
-    padding: 40px; /*Espaço dentro da filha pra n deixar o texto grudado nas bordas*/
-    margin: 30px; /* Espaço entre o contento e a borda do workspace*/
-
-    background-color: #1C1C1C;
-    border-radius: 30px;
-    border: 2px solid green;
-    padding: 20px;
+}
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .details{
     width: 280px;

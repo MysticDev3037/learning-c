@@ -13,3 +13,8 @@ function formatarData(data) {
     let [ano, mes, dia] = data.split("-");
     return `${dia}/${mes}/${ano}`; // Retorna no formato DD/MM/AAAA
 }
+function gerarPagina(){
+let pagina = document.createElement("section");
+pagina.className = "page";
+return pagina;
+}

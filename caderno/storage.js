@@ -1,11 +1,10 @@
 // PERSISTÊNCIA Fuções que alterar o "banco de dados"
 function carregarRegistro() {
-    console.log(registros);
     let dados = localStorage.getItem("registros");
     if (dados) {
-        registros = JSON.parse(dados);
+        registrosglobais = JSON.parse(dados);
     } else {
-        registros = [
+        registrosglobais = [
             {
                 id: 1,
                 materia: "Estrutura de Dados",
@@ -21,12 +20,11 @@ function carregarRegistro() {
                 data: "2026-07-06"
             }
         ];
-        console.log(registros);
         salvarRegistros(); // Salva os exemplos no localStorage
     }
-    contador = registros.length;
+    contador = registrosglobais.length;
 }
 
 function salvarRegistros() {
-    localStorage.setItem("registros", JSON.stringify(registros));
+    localStorage.setItem("registros", JSON.stringify(registrosglobais));
 }
