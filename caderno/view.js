@@ -35,17 +35,26 @@ function filtrarRegistros(reg) {
         verRegistros(encontrados);
     }
 }
-function formatarData(data) {
-    let [ano, mes, dia] = data.split("-");
-    return `${dia}/${mes}/${ano}`; // Retorna no formato DD/MM/AAAA
-}
-function ordenarRegistros(reg) {
-    if (ordemlista) {
-        return [...reg].sort((a, b) => new Date(b.data) - new Date(a.data)); // Mais recentes primeiro
-    } else {
-        return [...reg].sort((a, b) => new Date(a.data) - new Date(b.data)); // Mais antigos primeiro
+
+
+function atualizarSidebar(registros) {
+    let materias = listarMaterias(registros);
+    let sidebar = getel("sidebar");
+    sidebar.innerHTML = ""; // Limpa a sidebar antes de adicionar as opções
+    for (let i = 0; i < materias.length; i++) {
+        let botao = gerarOpcoesMaterias(materias[i]);
+        sidebar.appendChild(botao);
     }
 }
+function gerarOpcoesMaterias(materia) {
+    botao = document.createElement("button");
+    botao.textContent = materia;
+    botao.className = "btn-materia";
+    botao.dataset.materia = materia;
+    return botao;
+}    
+
+
 function gerarCard(registro){
     let card = document.createElement("article");
     card.className = "card";
@@ -61,38 +70,20 @@ function gerarBotao(texto, classe, id){
     botao.dataset.id = id;
     return botao;
 }
-function getel(id){ //Otimiza a busca de elementos no DOM, evitando repetição de código
-    return document.getElementById(id);
-}
-
 function criarParagrafo(rotulo, registro){
     let paragrafo = document.createElement("p");
+    if (rotulo === "Matéria") {
+        paragrafo.className = "card-materia"; // Adiciona a classe para estilização
+    } else if (rotulo === "Título") {
+        paragrafo.className = "card-titulo"; // Adiciona a classe para estilização
+    } else if (rotulo === "Conteúdo") {
+        paragrafo.className = "card-conteudo"; // Adiciona a classe para estilização
+    }
     if (rotulo =="") {
         paragrafo.textContent = registro;
     } else
     paragrafo.textContent = rotulo + ":" + registro;
     return paragrafo;
-}
-function abrirModal(id){
-    getel("modalEditar").style.display = "flex";
-    idEditando = id; //Variavl Global
-    let registro = registros.find(r => r.id === id);
-        getel("editarmateria").value = registro.materia
-        getel("editartitulo").value = registro.titulo
-        getel("editarconteudo").value = registro.conteudo
-}
-function limparCampos() {
-    getel("materia").value = "";
-    getel("titulo").value = "";
-    getel("conteudo").value = "";
-    getel("materia").focus(); // Coloca o foco de volta no campo de matéria
-}
-function cancelarEdicao(){
-    getel("modalEditar").style.display = "none";
-    idEditando = null;
-    getel("editarmateria").value = "";
-    getel("editartitulo").value = "";
-    getel("editarconteudo").value = "";
 }
 function gerarCabecalho(registro){
     let cabecalho = document.createElement("div");

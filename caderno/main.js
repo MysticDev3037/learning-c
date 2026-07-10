@@ -32,6 +32,8 @@ function iniciarSistema() {
     atualizarTela();         // Desenha os cards na tela
 
     iniciarEventos();        // Registra todos os eventos
+
+    atualizarSidebar(registros); // Atualiza a sidebar com as matérias
 }
 
 iniciarSistema();
