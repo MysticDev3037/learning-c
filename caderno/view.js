@@ -1,19 +1,21 @@
 // INTERFACE Funções que alterem a interface do usuario
-function verRegistros(listarg) {
 
+function prepararWorkspace(){
     let listaRegistro = getel("listaRegistro");
     listaRegistro.innerHTML = "";
-
-    if (listarg.length === 0) {
-        listaRegistro.innerHTML = "<p>Nenhum registro encontrado.</p>";
-        return;
-    }
-
+    return listaRegistro
+}
+function verScrollDay(listadata){
+    for(data of listadata)(
+        log.console("Algo")
+    )
+}
+function verRegistros(listarg) {
+    listaRegistro = prepararWorkspace();
     let ordenado = ordenarRegistros(listarg);
 
-    let paginaAtual = gerarPagina();
+    paginaAtual = gerarPagina();
     listaRegistro.appendChild(paginaAtual);
-
     let dataAnterior = null;
 
     for (let i = 0; i < ordenado.length; i++) {
@@ -25,7 +27,6 @@ function verRegistros(listarg) {
 
             paginaAtual = gerarPagina();
             listaRegistro.appendChild(paginaAtual);
-
         }
 
         let card = gerarCard(registro);

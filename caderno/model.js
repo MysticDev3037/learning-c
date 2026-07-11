@@ -16,3 +16,14 @@ function listarMaterias(registros){
     }
     return materias;
 }
+function listarDatas(registros){
+    let datas = []
+
+    for(let i=0; i<registros.length; i++){
+        let dataAtual = registros[i].data;
+        if(!datas.includes(dataAtual)){
+            datas.push(dataAtual);
+        }
+    }
+    return datas;
+}

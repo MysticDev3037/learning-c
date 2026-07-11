@@ -69,7 +69,6 @@ body{
 
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: flex-start;
     gap: 20px;
 
@@ -78,6 +77,17 @@ body{
     overflow-y: auto;
 
 }
+.workspace-header{
+    display: flex;
+    justify-content: center;
+}
+.workspace-content{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
 /* Largura da Barra*/
 ::-webkit-scrollbar{
     width: 15px;
@@ -95,6 +105,27 @@ body{
 /*Hover*/
 ::-webkit-scrollbar-thumb:hover{
     background: #5a5a5a;
+}
+#listaRegistro{
+    width: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#day-navigation{
+    position: absolute;
+
+    right: 20px;
+    top: 0;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 
@@ -119,6 +150,7 @@ body{
 }
 
 .novo-registro.expandido{
+    width: 850px;
     height: 1100px;
 }
 
