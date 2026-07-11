@@ -6,17 +6,38 @@ function prepararWorkspace(){
     return listaRegistro
 }
 function verScrollDay(listadata){
-    for(data of listadata)(
-        log.console("Algo")
-    )
+    const lista = getel("day-navigation");
+    lista.innerHTML = "";
+
+    for(const data of listadata){
+        const li = document.createElement("li");
+        const botao = document.createElement("button");
+        botao.classList.add("botao-scdate");
+        botao.dataset.data = data;
+        const info = formatarDataScroll(data);
+        const day = document.createElement("span");
+        day.classList.add("day-number");
+        const month = document.createElement("span");
+        month.classList.add("day-month");
+        day.textContent = info.dia;
+        month.textContent = info.mes;
+
+        botao.appendChild(day);
+        botao.appendChild(month);
+        li.appendChild(botao);
+        lista.appendChild(li);
+    }
+
 }
+
 function verRegistros(listarg) {
     listaRegistro = prepararWorkspace();
     let ordenado = ordenarRegistros(listarg);
 
     paginaAtual = gerarPagina();
+    paginaAtual.dataset.data = ordenado[0];
     listaRegistro.appendChild(paginaAtual);
-    let dataAnterior = null;
+    let dataAnterior = ordenado[0].data;
 
     for (let i = 0; i < ordenado.length; i++) {
 
@@ -24,8 +45,9 @@ function verRegistros(listarg) {
 
         // Verifica se mudou a data (exceto no primeiro registro)
         if (dataAnterior !== null && registro.data !== dataAnterior) {
-
+            paginaAtual.dataset.data = dataAnterior;
             paginaAtual = gerarPagina();
+            paginaAtual.dataset.data = registro.data;
             listaRegistro.appendChild(paginaAtual);
         }
 
@@ -40,6 +62,7 @@ function verRegistros(listarg) {
             paginaAtual.removeChild(card);
 
             // Cria uma nova página
+            paginaAtual.dataset.data = dataAnterior;
             paginaAtual = gerarPagina();
             listaRegistro.appendChild(paginaAtual);
 

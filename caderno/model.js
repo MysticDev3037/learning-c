@@ -17,13 +17,11 @@ function listarMaterias(registros){
     return materias;
 }
 function listarDatas(registros){
-    let datas = []
+    const datas = new Set();
 
-    for(let i=0; i<registros.length; i++){
-        let dataAtual = registros[i].data;
-        if(!datas.includes(dataAtual)){
-            datas.push(dataAtual);
-        }
+    for(const registro of registros){
+        datas.add(registro.data);
     }
-    return datas;
+
+    return [...datas];
 }

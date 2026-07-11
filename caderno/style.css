@@ -59,6 +59,55 @@ body{
 
     border-radius: 10px;
 }
+/* ==========================================================
+   scrollDay
+   ========================================================== */
+
+#day-navigation{
+
+    position: sticky;
+    top: 20px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+.botao-scdate{
+    width: 40px;
+    height: 45px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #3a3a3a;
+    color:aliceblue;
+}
+.day-number{
+    font-size: 20px;
+}
+.day-month{
+    font-size: 10px;
+}
+.botao-scdate.ativo{
+    width: 40px;
+    height: 45px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: aliceblue;
+    color: #3a3a3a;
+}
+
+
 
 /* ==========================================================
    WORKSPACE
@@ -85,7 +134,8 @@ body{
     display: flex;
     width: 100%;
     justify-content: center;
-    position: relative;
+    align-items: flex-start;
+    gap: 20px;
 }
 
 /* Largura da Barra*/
@@ -112,21 +162,7 @@ body{
     flex-direction: column;
     align-items: center;
 }
-#day-navigation{
-    position: absolute;
 
-    right: 20px;
-    top: 0;
-
-    margin: 0;
-    padding: 0;
-
-    list-style: none;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
 
 
 /* ==========================================================

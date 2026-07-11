@@ -18,3 +18,11 @@ function gerarPagina(){
         pagina.className = "page";
         return pagina;
 }
+function formatarDataScroll(date) {
+    date = new Date(date);
+    const meses = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+    return{
+        dia: date.getDate(),
+        mes: meses[date.getMonth()]
+    }
+}

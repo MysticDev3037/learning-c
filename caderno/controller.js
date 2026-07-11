@@ -67,3 +67,28 @@ function buscarMateria() {
 
     alert(texto);
 }
+function verificarPaginaAtual(){
+    const paginas = document.querySelectorAll(".page");
+    for(const pagina of paginas){
+        const posicao = pagina.getBoundingClientRect();
+        if(posicao.top < window.innerHeight && posicao.bottom > 0){
+            destacarBloco(pagina.dataset.data);
+        }
+    }
+}
+function destacarBloco(data){
+
+    const botoes = document.querySelectorAll(".botao-scdate");
+
+    for(const botao of botoes){
+
+        if(data === botao.dataset.data){
+            botao.classList.add("ativo");
+            console.log("ATIVOU", botao.dataset.data);
+        } 
+        else{
+            botao.classList.remove("ativo");
+            console.log("REMOVEU", botao.dataset.data);
+        }
+    }
+}

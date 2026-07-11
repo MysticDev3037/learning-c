@@ -1,5 +1,10 @@
 function iniciarEventos() {
 
+    getel("workspace").addEventListener(
+    "scroll",
+    verificarPaginaAtual
+    );
+
     getel("conteudo").addEventListener("focus", function () {
         document.querySelector(".novo-registro").classList.add("expandido");
     });
@@ -35,6 +40,7 @@ function iniciarSistema() {
 
     let materias = listarMaterias(registrosglobais);
     atualizarListaMaterias(materias);
+    verScrollDay(listarDatas(registrosglobais));
     atualizarSidebar(materias); // Atualiza a sidebar com as matérias
 
     atualizarTela();         // Atualiza a tela com os registross
