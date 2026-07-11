@@ -5,11 +5,11 @@ let idEditando = null;
 let ordemlista = true;
 let listaMaterias = [];
 
-function listarMaterias(registro){
+function listarMaterias(registros){
     let materias= []
 
-    for(let i=0; i<registro.length; i++){
-        let materialAtual = registro[i].materia;
+    for(let i=0; i<registros.length; i++){
+        let materialAtual = registros[i].materia;
         if(!materias.includes(materialAtual)){
             materias.push(materialAtual);
         }

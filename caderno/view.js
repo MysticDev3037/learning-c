@@ -78,12 +78,21 @@ function filtrarRegistros(reg) {
 
 
 function atualizarSidebar(registros) {
-    let materias = listarMaterias(registros);
     let sidebar = getel("sidebar");
     sidebar.innerHTML = ""; // Limpa a sidebar antes de adicionar as opções
-    for (let i = 0; i < materias.length; i++) {
-        let botao = gerarOpcoesMaterias(materias[i]);
+    for (let i = 0; i < registros.length; i++) {
+        let botao = gerarOpcoesMaterias(registros[i]);
         sidebar.appendChild(botao);
+    }
+}
+
+function atualizarListaMaterias(materias){
+    let lista = getel("listaMaterias");
+    lista.innerHTML = "";
+    for (let materia of materias){
+        let opcao = document.createElement("option");
+        opcao.value = materia;
+        lista.appendChild(opcao);
     }
 }
 function gerarOpcoesMaterias(materia) {
