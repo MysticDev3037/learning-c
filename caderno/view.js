@@ -14,13 +14,16 @@ function verScrollDay(listadata){
         const botao = document.createElement("button");
         botao.classList.add("botao-scdate");
         botao.dataset.data = data;
-        const info = formatarDataScroll(data);
+        const info = formatarDataScroll(converterData(data));
         const day = document.createElement("span");
         day.classList.add("day-number");
         const month = document.createElement("span");
         month.classList.add("day-month");
         day.textContent = info.dia;
         month.textContent = info.mes;
+        console.log(day.textContent);
+        console.log(month.textContent);
+        console.log(botao.dataset.data);
 
         botao.appendChild(day);
         botao.appendChild(month);

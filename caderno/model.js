@@ -22,6 +22,5 @@ function listarDatas(registros){
     for(const registro of registros){
         datas.add(registro.data);
     }
-
     return [...datas];
 }

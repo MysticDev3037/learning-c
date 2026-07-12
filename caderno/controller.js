@@ -71,7 +71,7 @@ function verificarPaginaAtual(){
     const paginas = document.querySelectorAll(".page");
     for(const pagina of paginas){
         const posicao = pagina.getBoundingClientRect();
-        if(posicao.top < window.innerHeight && posicao.bottom > 0){
+        if(posicao.top < window.innerHeight && posicao.bottom > 200){
             destacarBloco(pagina.dataset.data);
         }
     }
@@ -84,11 +84,9 @@ function destacarBloco(data){
 
         if(data === botao.dataset.data){
             botao.classList.add("ativo");
-            console.log("ATIVOU", botao.dataset.data);
         } 
         else{
             botao.classList.remove("ativo");
-            console.log("REMOVEU", botao.dataset.data);
         }
     }
 }

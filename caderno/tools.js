@@ -26,3 +26,23 @@ function formatarDataScroll(date) {
         mes: meses[date.getMonth()]
     }
 }
+function converterData(data){
+    const partes = data.split("-");
+    return new Date(
+        Number(partes[0]),
+        Number(partes[1]) -1,
+        Number(partes[2])
+    );
+}
+function irParaData(data){
+    const paginas = document.querySelectorAll(".page");
+    for(const pagina of paginas){
+        if(pagina.dataset.data === data){
+            pagina.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+            break;
+        }
+    }
+}

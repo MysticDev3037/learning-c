@@ -1,5 +1,15 @@
 function iniciarEventos() {
 
+    const lista = getel("day-navigation");
+    lista.addEventListener("click", (evento) => {
+        const botao = evento.target.closest(".botao-scdate");
+
+        if(!botao){
+            return;
+        }
+        irParaData(botao.dataset.data);
+    });
+
     getel("workspace").addEventListener(
     "scroll",
     verificarPaginaAtual
