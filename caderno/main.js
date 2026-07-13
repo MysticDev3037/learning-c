@@ -1,48 +1,9 @@
-function iniciarEventos() {
 
-    const lista = getel("day-navigation");
-    lista.addEventListener("click", (evento) => {
-        const botao = evento.target.closest(".botao-scdate");
-
-        if(!botao){
-            return;
-        }
-        irParaData(botao.dataset.data);
-    });
-
-    getel("workspace").addEventListener(
-    "scroll",
-    verificarPaginaAtual
-    );
-
-    getel("conteudo").addEventListener("focus", function () {
-        document.querySelector(".novo-registro").classList.add("expandido");
-    });
-
-    // Campo de pesquisa
-    getel("buscar").addEventListener("input", function () {
-        filtrarRegistros(registrosglobais);
-    });
-
-    // Clique nos cards (delegação de eventos)
-    getel("listaRegistro").addEventListener("click", function (evento) {
-
-        let alvo = evento.target;
-
-        if (alvo.classList.contains("btn-excluir")) {
-            const id = Number(alvo.dataset.id);
-            deletarRegistro(id);
-
-        } else if (alvo.classList.contains("btn-editar")) {
-            const id = Number(alvo.dataset.id);
-            abrirModal(id);
-        }
-    });
-}
 
 function atualizarTela() {
     filtrarRegistros(registrosglobais);
 }
+
 
 function iniciarSistema() {
     carregarRegistro();      // Carrega os registros do localStorage

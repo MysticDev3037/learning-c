@@ -2,114 +2,89 @@
    GERAL
    ========================================================== */
 
-body{
-    margin: 0;
-    background-color: black;
+*{
+    box-sizing:border-box;
 }
+
+body{
+    margin:0;
+    background-color:black;
+}
+
 
 /* ==========================================================
    TOPO
    ========================================================== */
 
 .topbar{
-    height: 30px;
-    padding: 15px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    height:60px;
+    padding:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
 }
+
 
 #buscar{
-    width: 500px;
-    height: 25px;
 
-    padding: 5px;
-    border-radius: 10px;
+    background:#1C1C1C;
+
+    border:none;
+    outline:none;
+
+    color:white;
+
+    width:500px;
+    height:30px;
+
+    padding:5px 10px;
+
+    border-radius:10px;
+
 }
+
 
 /* ==========================================================
    LAYOUT
    ========================================================== */
 
 .layout{
-    display: flex;
-    height: calc(100vh - 60px);
+
+    display:flex;
+
+    height:calc(100vh - 60px);
+
 }
+
 
 /* ==========================================================
    SIDEBAR
    ========================================================== */
 
 .sidebar{
-    width: 250px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    width:250px;
 
-    padding: 10px;
-
-    border: 2px solid red;
-}
-
-.btn-materia{
-    margin: 0;
-    padding: 7px;
-
-    border-radius: 10px;
-}
-/* ==========================================================
-   scrollDay
-   ========================================================== */
-
-
-#day-navigation{
-    position:sticky;
-    top:20px;
-
-    margin-left: calc(50% + 440px);
-
-    width:max-content;
-}       
-
-.botao-scdate{
-    width:40px;
-    height:45px;
-
-    border-radius:5px;
-    border:none;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    padding:10px;
 
     display:flex;
-    justify-content:center;
     flex-direction:column;
 
-    background-color:#3a3a3a;
-    color:aliceblue;
+    gap:10px;
 
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease;
 }
 
 
-.botao-scdate.ativo{
-    background-color:aliceblue;
-    color:#3a3a3a;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    transform:scale(1.1);
-}
-.day-number{
-    font-size: 20px;
-}
-.day-month{
-    font-size: 10px;
-}
+.btn-materia{
 
+    padding:7px;
+
+    border-radius:10px;
+
+}
 
 
 
@@ -118,55 +93,86 @@ body{
    ========================================================== */
 
 .workspace{
-    flex: 1;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 20px;
+    flex:1;
 
-    padding: 20px;
+    display:flex;
 
-    overflow-y: auto;
+    overflow:hidden;
+
+    gap:0;
 
 }
-.workspace-header{
-    display: flex;
-    justify-content: center;
+
+
+/* ==========================================================
+   ÁREA DE SCROLL
+   ========================================================== */
+
+.workspace-scroll{
+
+    flex:1;
+
+    height:100%;
+
+    overflow-y:auto;
+    scrollbar-gutter:stable;
+    border:2px solid orange;
+
 }
 
-/* Largura da Barra*/
+
+/* ==========================================================
+   SCROLLBAR
+   ========================================================== */
+
+
 ::-webkit-scrollbar{
-    width: 15px;
+
+    width:15px;
+
 }
-/*FUndo da Barra*/
+
+
 ::-webkit-scrollbar-track{
-    background-color: #121212;
+
+    background:#121212;
+
 }
-/*Parte que desliza*/
+
+
 ::-webkit-scrollbar-thumb{
-    background: #3a3a3a;
-    border-radius: 999px;
-    border: 3px solid #121212;
+
+    background:#3a3a3a;
+
+    border-radius:999px;
+
+    border:3px solid #121212;
+
 }
-/*Hover*/
+
+
 ::-webkit-scrollbar-thumb:hover{
-    background: #5a5a5a;
-}
-.workspace-content{
-    width:100%;
-    position:relative;
+
+    background:#5a5a5a;
+
 }
 
-    #listaRegistro{
-        width:850px;
-        margin:0 auto;
-        margin-top: -120px;
 
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-    }
+
+/* ==========================================================
+   HEADER DO WORKSPACE
+   ========================================================== */
+
+.workspace-header{
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+
 
 /* ==========================================================
    NOVO REGISTRO
@@ -174,158 +180,440 @@ body{
 
 .novo-registro{
 
-    width: 830px;
-    height: 100px;
 
-    display: flex;
-    flex-direction: column;
+    width:830px;
 
-    padding: 30px;
+    height:130px;
 
-    background-color: #1C1C1C;
-    border-radius: 20px;
 
-    transition: height 1s ease;
+    padding:30px;
+
+    margin-bottom: 20px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+
+    background:#1C1C1C;
+
+
+    border-radius:20px;
+
+
+    transition:height .5s ease;
+
 }
+
 
 .novo-registro.expandido{
-    width: 850px;
-    height: 1100px;
+
+    width:850px;
+
+    height:1100px;
+
+    margin-bottom: 20px;
+
 }
 
-/* ---------- Cabeçalho ---------- */
+
+
+/* Cabeçalho */
 
 .novo-header{
 
-    display: flex;
+    display:flex;
 
-    position: relative;
+    position:relative;
 
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+    margin-bottom:20px;
+
+    padding-bottom:15px;
+
 }
+
 
 .novo-header::after{
 
-    content: "";
+    content:"";
 
-    position: absolute;
 
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position:absolute;
 
-    height: 3px;
+    left:0;
+    right:0;
+    bottom:0;
 
-    background-color: #808080;
 
-    border-radius: 999px;
+    height:3px;
+
+
+    background:#808080;
+
+    border-radius:999px;
+
 }
 
-/* ---------- Corpo ---------- */
+
+
+/* Corpo */
 
 .novo-body{
-    display: flex;
+
+    display:flex;
+
 }
 
-/* ---------- Campos ---------- */
+
+/* Campos */
 
 #materia,
 #titulo,
 #conteudo{
 
-    background: transparent;
 
-    border: none;
-    outline: none;
+    background:transparent;
 
-    color:  white;
+    border:none;
 
-    font-size: 18px;
-    line-height: 1.6;
+    outline:none;
 
-    caret-color: white;
+
+    color:white;
+
+
+    font-size:18px;
+
+
 }
+
 
 #materia{
-    width: 30%;
+
+    width:30%;
+
 }
+
 
 #titulo{
-    width: 70%;
+
+    width:70%;
+
 }
+
 
 #conteudo{
-    width: 100%;
 
-    resize: none;
+    width:100%;
+
+    resize:none;
+
 }
 
-/* ---------- Placeholders ---------- */
 
-#materia::placeholder,
-#titulo::placeholder,
-#conteudo::placeholder{
 
-    font-size: 18px;
+/* ==========================================================
+   CONTEÚDO
+   ========================================================== */
+
+
+.workspace-content{
+
+
+    border: 2px solid blue;
+    display: flex;
+    justify-content: center;
+    padding-left: 50px;
+
+
+
 }
+
+#listaRegistro{
+    width:850px;
+    border:2px solid green;
+}
+
+
 
 /* ==========================================================
    PÁGINAS
    ========================================================== */
 
+
 .page{
 
-    width: 850px;
-    height: 1100px;
 
-    padding: 30px;
-    margin-bottom: 40px;
+    width:850px;
 
-    background-color: #1C1C1C;
+    height:1100px;
 
-    border-radius: 20px;
+
+    padding:30px;
+
+
+    margin-bottom:40px;
+
+
+    background:#1C1C1C;
+
+
+    border-radius:20px;
+
+
 }
+
+
 
 /* ==========================================================
    CARDS
    ========================================================== */
 
+
 .card{
 
-    padding: 20px 0;
 
-    color: white;
+    padding:20px 0;
 
-    border-bottom: 1px solid #444;
+
+    color:white;
+
+
+    border-bottom:1px solid #444;
+
+
 }
+
 
 .page .card:last-child{
-    border-bottom: none;
+
+    border-bottom:none;
+
 }
+
 
 .card-header{
 
-    display: flex;
+    display:flex;
 
-    justify-content: space-between;
-    align-items: center;
+    justify-content:space-between;
+
+    align-items:center;
+
 }
 
+
+
 /* ==========================================================
-   PAINEL LATERAL
+   NAVEGAÇÃO DE DATA
    ========================================================== */
+
+
+.workspace-nav{
+    width:50px;
+    border: 2px solid red;
+}
+
+
+#day-navigation{
+    position:sticky;
+    top:20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+#day-navigation li{
+    display: flex;
+    justify-content: center;
+}
+
+.botao-scdate{
+
+
+    width:40px;
+
+    height:45px;
+
+
+    margin:5px 0;
+
+
+    border:none;
+
+
+    border-radius:5px;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+
+    background:#3a3a3a;
+
+    color:aliceblue;
+
+
+    transition:
+
+        background-color .3s ease,
+
+        color .3s ease,
+
+        transform .3s ease;
+
+
+}
+
+
+.botao-scdate.ativo{
+
+
+    background:aliceblue;
+
+    color:#3a3a3a;
+
+
+    transform:scale(1.1);
+
+
+}
+
+
+.day-number{
+
+    font-size:20px;
+
+}
+
+
+.day-month{
+
+    font-size:10px;
+
+}
+
+
+
+/* ==========================================================
+   DETAILS
+   ========================================================== */
+
 
 .details{
 
-    width: 280px;
 
-    margin-right: 5px;
-    margin-bottom: 5px;
+    width:300px;
 
-    padding: 20px;
 
-    background-color: #1C1C1C;
+    padding:20px;
 
-    border-radius: 20px;
+
+    background:#1C1C1C;
+
+
+    border-radius:20px;
+
+
+}
+
+
+/* ==========================================================
+   EDITOR
+   ========================================================== */
+
+
+.editor{
+
+
+    width:850px;
+
+    min-height:1100px;
+
+
+    padding:30px;
+
+
+    margin:0 auto;
+
+
+    background:#1C1C1C;
+
+
+    border-radius:20px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+
+}
+
+
+.editor.hidden{
+
+    display:none;
+
+}
+
+
+
+.editor-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+
+#editTitulo{
+
+
+    background:none;
+
+    border:none;
+
+    outline:none;
+
+
+    color:white;
+
+
+    font-size:32px;
+
+
+}
+
+
+#editorConteudo{
+
+
+    flex:1;
+
+    min-height:800px;
+
+
+    background:none;
+
+
+    border:none;
+
+    outline:none;
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+    resize:none;
+
+
 }

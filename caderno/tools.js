@@ -1,6 +1,13 @@
 function getel(id){ //Otimiza a busca de elementos no DOM, evitando repetição de código
     return document.getElementById(id);
 }
+function hidden(id){
+    getel(id).classList.add("hidden");
+}
+
+function show(id){
+    getel(id).classList.remove("hidden");
+}
 function ordenarRegistros(reg) {
     if (ordemlista) {
         return [...reg].sort((a, b) => new Date(b.data) - new Date(a.data)); // Mais recentes primeiro
@@ -13,11 +20,7 @@ function formatarData(data) {
     let [ano, mes, dia] = data.split("-");
     return `${dia}/${mes}/${ano}`; // Retorna no formato DD/MM/AAAA
 }
-function gerarPagina(){
-        let pagina = document.createElement("section");
-        pagina.className = "page";
-        return pagina;
-}
+
 function formatarDataScroll(date) {
     date = new Date(date);
     const meses = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
@@ -45,4 +48,12 @@ function irParaData(data){
             break;
         }
     }
+}
+function buscarRegistro(id){
+    for(let registro of registrosglobais){
+        if(registro.id === id){
+            return registro;
+        }
+    }
+    return null;
 }

@@ -7,60 +7,132 @@
 </head>
 
 <body>
-    <header class="topbar">
-        <button id="btnAmbient">Ambientes</button>
-        <input
-            type="text"
-            placeholder="Pesquisar"
-            id="buscar"
-        />
-        <button id="btnPerfil">Perfil</button>
 
-    </header>
+<header class="topbar">
+    <button id="btnAmbient">Ambientes</button>
 
-    <div class="layout">    
-        <aside class="sidebar" id="sidebar">
+    <input
+        type="text"
+        placeholder="Pesquisar"
+        id="buscar"
+    />
 
-        </aside>
+    <button id="btnPerfil">Perfil</button>
+</header>
 
-        <main class="workspace" id="workspace">
-            <section class="workspace-header">
+
+<div class="layout">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
+    </aside>
+
+
+    <!-- ÁREA CENTRAL -->
+    <main class="workspace" id="workspace">
+        <!-- PARTE QUE ROLA -->
+        <section class="workspace-scroll" id="workspace-scroll">
+
+
+            <!-- NOVO REGISTRO -->
+            <section class="workspace-header" id="workspace-header">
                 <article class="novo-registro">
                     <div class="novo-header">
                         <input 
                             type="text"
                             id="materia"
                             placeholder="Matéria"
-                            list = "listaMaterias">
-                            <datalist id="listaMaterias">
-                            
-                            </datalist>
-                          <input
+                            list="listaMaterias"
+                        >
+                        <datalist id="listaMaterias">
+                        </datalist>
+                        <input
                             type="text"
                             id="titulo"
-                            placeholder="Título">
+                            placeholder="Título"
+                        >
                     </div>
                     <div class="novo-body">
                         <textarea
                             id="conteudo"
-                            placeholder="Comece a escrever"></textarea>
+                            placeholder="Comece a escrever"
+                        ></textarea>
                     </div>
                 </article>
             </section>
-            <section class="workspace-content">
-                <ul id="day-navigation">
-                </ul>
+
+
+
+            <!-- PÁGINAS -->
+            <section class="workspace-content" id="workspace-content">
                 <section id="listaRegistro">
                 </section>
+                                <!-- NAVEGAÇÃO POR DATA -->
+                <aside class="workspace-nav">
+                    <ul id="day-navigation">
+                    </ul>
+                </aside>
             </section>
-        </main>
-        <aside class="details">
-            <article class="infocontent" id="infocontent"></article>
 
-        </aside>
-    </div>
 
-    
+            <!-- EDITOR -->
+            <section id="editor" class="editor hidden">
+
+                <div class="editor-header">
+
+                    <input 
+                        type="text" 
+                        id="editMateria"
+                        placeholder="Editar Materia"
+                        list="listaMateriasEditor"
+                    >
+
+                    <datalist id="listaMateriasEditor">
+                    </datalist>
+
+
+                    <input
+                        type="text"
+                        id="editTitulo"
+                        placeholder="Editar Título"
+                    >
+
+                </div>
+
+
+                <div class="editor-body">
+
+                    <textarea id="editorConteudo"></textarea>
+
+                </div>
+
+            </section>
+
+
+        </section>
+        <!-- FIM DO SCROLL -->
+
+
+
+
+    </main>
+
+
+
+    <!-- PAINEL DIREITO -->
+    <aside class="details">
+
+        <article 
+            class="infocontent" 
+            id="infocontent">
+        </article>
+
+    </aside>
+
+
+</div>
+
+
 <script src="tools.js"></script>
 <script src="model.js"></script>
 <script src="storage.js"></script>
@@ -68,4 +140,6 @@
 <script src="controller.js"></script>
 <script src="main.js"></script>
 
+
 </body>
+</html>

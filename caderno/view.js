@@ -134,9 +134,16 @@ function gerarOpcoesMaterias(materia) {
 function gerarCard(registro){
     let card = document.createElement("article");
     card.className = "card";
+    card.classList.add("card");
+    card.dataset.id = registro.id;
     card.appendChild(gerarCabecalho(registro)); // Adiciona o cabeçalho ao card
     card.appendChild(gerarCorpo(registro)); // Adiciona o corpo ao card
     return card;
+}
+function gerarPagina(){
+        let pagina = document.createElement("section");
+        pagina.className = "page";
+        return pagina;
 }
 
 
@@ -178,4 +185,24 @@ function dataAtual(){
     let mes = String(data.getMonth() + 1).padStart(2, '0'); // Janeiro é 0
     let ano = data.getFullYear();
     return `${ano}-${mes}-${dia}`; // Formato YYYY-MM-DD
+}
+// Abrir Editor
+
+function abrirEditor(id){
+    const registro = buscarRegistro(id);
+    if(!registro){
+        return;
+    }
+    preencherEditor(registro);
+    hidden("workspace-content");
+    show("editor");
+    hidden("workspace-header");
+}
+
+
+
+function preencherEditor(registro){
+    getel("editorConteudo").value = registro.conteudo;
+    getel("editMateria").value = registro.materia;
+    getel("editTitulo").value = registro.titulo;
 }
