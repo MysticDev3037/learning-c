@@ -317,17 +317,13 @@ body{
    CONTEÚDO
    ========================================================== */
 
-
 .workspace-content{
-
-
     border: 2px solid blue;
     display: flex;
     justify-content: center;
+    align-items: flex-start;   /* impede que o nav estique pra altura da lista de páginas */
     padding-left: 50px;
-
-
-
+    gap: 20px;
 }
 
 #listaRegistro{
@@ -409,24 +405,31 @@ body{
    NAVEGAÇÃO DE DATA
    ========================================================== */
 
-
 .workspace-nav{
     width:50px;
-    border: 2px solid red;
-}
-.day-window{
     position: sticky;
     top: 0;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    border: 2px solid red;
+    /* sem display:flex, sem align-items */
 }
 #day-navigation{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-align: center;
+    margin:0;
+    padding:0;
+    list-style:none;
+    text-align:center;
+    width:100%;
+
+    position: relative;
+    transition: transform .3s ease;
 }
 #day-navigation li{
     display: flex;
     justify-content: center;
+}
+#day-navigation li + li{
+    margin-top: -3px;
 }
 
 .botao-scdate{
@@ -453,13 +456,18 @@ body{
     flex-direction:column;
 
 
-    background:#3a3a3a;
-
+    background: linear-gradient(
+        to bottom,
+        #3a3a3a 0%,
+        rgba(58, 58, 58, 0.4) 100%
+    );
     color:aliceblue;
 
 
     transition:
 
+        margin-top .3s ease,
+        margin-bottom .3s ease,
         background-color .3s ease,
 
         color .3s ease,
@@ -480,6 +488,8 @@ body{
 
     transform:scale(1.1);
 
+    margin-top: 30px;
+    margin-bottom: 30px;
 
 }
 

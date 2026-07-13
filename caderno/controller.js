@@ -22,6 +22,7 @@ function destacarBloco(data){
             botao.classList.remove("ativo");
         }
     }
+    ajustarScrollDay();
 }
 function iniciarEventos(){
 

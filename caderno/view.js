@@ -30,6 +30,7 @@ function verScrollDay(listadata){
         li.appendChild(botao);
         lista.appendChild(li);
     }
+    ajustarScrollDay();
 
 }
 

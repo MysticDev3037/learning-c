@@ -57,3 +57,52 @@ function buscarRegistro(id){
     }
     return null;
 }
+let deslocamentoScrollDay = 0;
+
+function ajustarScrollDay() {
+    const container = document.querySelector(".workspace-nav");
+    const lista = getel("day-navigation");
+    const ativo = lista.querySelector(".botao-scdate.ativo");
+
+    if (!container || !ativo) {
+        return;
+    }
+
+    const margem = 90;
+    const caixa = container.getBoundingClientRect();
+    const botao = ativo.getBoundingClientRect();
+
+    let novoDeslocamento = deslocamentoScrollDay;
+
+    // O ativo saiu por baixo: a pilha sobe.
+    if (botao.bottom > caixa.bottom - margem) {
+        novoDeslocamento -= botao.bottom - (caixa.bottom - margem);
+    }
+
+    // O ativo saiu por cima: a pilha desce.
+    if (botao.top < caixa.top + margem) {
+        novoDeslocamento += (caixa.top + margem) - botao.top;
+    }
+
+    // Impede a lista de passar do começo ou do fim.
+    const minimo = Math.min(
+        0,
+        container.clientHeight - lista.scrollHeight
+    );
+
+    deslocamentoScrollDay = Math.max(
+        minimo,
+        Math.min(0, novoDeslocamento)
+    );
+
+    lista.style.transform =
+        `translateY(${deslocamentoScrollDay}px)`;
+}
+
+
+
+
+
+
+
+
