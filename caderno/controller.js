@@ -35,6 +35,7 @@ function iniciarEventos(){
     iniciarEventoPesquisa();
 
     iniciarEventoCards();
+    
 
 }
 function iniciarEventoScrollData(){

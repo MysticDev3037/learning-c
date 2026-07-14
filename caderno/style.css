@@ -32,20 +32,24 @@ body{
 
     background:#1C1C1C;
 
-    border:none;
+    border:1px;
     outline:none;
 
     color:white;
+    font-size: 15px;
 
     width:500px;
-    height:30px;
+    height:40px;
 
-    padding:5px 10px;
+    padding:5px 14px;
 
     border-radius:10px;
 
 }
-
+#buscar::placeholder{
+    font-size: 15px;
+    color: #888;
+}
 
 /* ==========================================================
    LAYOUT
@@ -80,9 +84,14 @@ body{
 
 .btn-materia{
 
-    padding:7px;
+    background-color: #5a5a5a;
+    color: aliceblue;
+    padding:0px 12px;
+    height: 36px;
+    width: 220px;
+    font-size: 14px;
 
-    border-radius:10px;
+    border-radius:8px;
 
 }
 
@@ -117,7 +126,6 @@ body{
 
     overflow-y:auto;
     scrollbar-gutter:stable;
-    border:2px solid orange;
 
 }
 
@@ -136,7 +144,7 @@ body{
 
 ::-webkit-scrollbar-track{
 
-    background:#121212;
+    background: transparent;
 
 }
 
@@ -254,7 +262,21 @@ body{
     border-radius:999px;
 
 }
+.campData{
+    color: white;
+}
+input[type="date"]{
+    background-color: #3a3a3a;
+    border: none;
+    color: white;
+    top: -20px;
+    height: 40px;
+    padding: 0 12px;
 
+    font-size: 15px;
+
+    border-radius: 5px;
+}
 
 
 /* Corpo */
@@ -318,7 +340,6 @@ body{
    ========================================================== */
 
 .workspace-content{
-    border: 2px solid blue;
     display: flex;
     justify-content: center;
     align-items: flex-start;   /* impede que o nav estique pra altura da lista de páginas */
@@ -328,7 +349,6 @@ body{
 
 #listaRegistro{
     width:850px;
-    border:2px solid green;
 }
 
 
@@ -411,7 +431,6 @@ body{
     top: 0;
     height: calc(100vh - 60px);
     overflow: hidden;
-    border: 2px solid red;
     /* sem display:flex, sem align-items */
 }
 #day-navigation{
@@ -429,7 +448,7 @@ body{
     justify-content: center;
 }
 #day-navigation li + li{
-    margin-top: -3px;
+    margin-top: -15px;
 }
 
 .botao-scdate{
@@ -488,8 +507,8 @@ body{
 
     transform:scale(1.1);
 
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 25px;
+    margin-bottom: 20px;
 
 }
 
@@ -517,7 +536,7 @@ body{
 .details{
 
 
-    width:300px;
+    width:400px;
 
 
     padding:20px;
@@ -526,7 +545,8 @@ body{
     background:#1C1C1C;
 
 
-    border-radius:20px;
+    border-top-right-radius:20px;
+    border-top-left-radius: 20px;
 
 
 }
